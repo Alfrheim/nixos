@@ -1,0 +1,131 @@
+(defwidget bar []
+  (centerbox :orientation "h"
+    (top)
+    (music)
+    (sidestuff)))
+
+(defwidget sidestuff []
+  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
+    (metric :label "🔊"
+            :value volume
+            :onchange "amixer set Master {}%")
+    (metric :label "󰍛"
+            :value '${EWW_RAM.used_mem_perc}'
+            :onchange "")
+    (metric :label "💾"
+            :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
+            :onchange "")
+    (time)))
+
+(defwidget top []
+	(box	:orientation "h" 
+			:space-evenly "false" 
+			:valign "start" 
+(launcher)
+(workspaces)))
+
+;; Launcher Widgets ;;
+(defwidget launcher []
+	(box :orientation "h" 
+		 :space-evenly "false" 
+		 :spacing -15
+  	(button :class "launcher_icon" 
+		   	:onclick "~/bin/launcher"  "")))
+
+; eww is natively able to parse the JSON output of `leftwm-state`
+; since eww also has the ability of `for` loops there is no need for a `liquid` template anymore
+(defwidget workspaces []
+    (box :class "workspaces"
+         :orientation "h"
+         :space-evenly true
+         :halign "start"
+         :spacing 10
+      (box
+        (for tag in '${wmstate.workspaces[0].tags}'
+          (button
+            :class {tag.mine ? "ws-button-mine" :
+                    tag.visible ? "ws-button-visible" :
+                    tag.focused? "ws-button-urgent" :
+                    tag.busy ? "ws-button-busy" : "ws-button"}
+            :onclick "leftwm-command \"SendWorkspaceToTag 0 ${tag.index}\""
+            {!tag.mine && !tag.busy && !tag.visible && !tag.focused?  "·" : "${tag.name}"})))))
+
+(defwidget music []
+  (box :class "music"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+    {music != "" ? "🎵${music}" : ""}))
+
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+(defwidget time []
+  (box :class "time" {time}))
+
+
+(deflisten music :initial ""
+  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+
+(defpoll volume :interval "1s" :initial "50"
+  "scripts/getvol")
+
+(defpoll time :interval "10s"
+  "date '+%H:%M %b %d, %Y'")
+
+(deflisten wmstate 
+           :initial '{"workspaces":[{"layout":"","tags":[{"name":"","index":0,"mine":false,"busy":false,"visible":false,"focused":false}]}]}'
+           "leftwm state")
+;; Powermenu Widgets ;;
+(defwidget power []
+	(eventbox	:onhover "${eww} update power=true"	
+				:onhoverlost "${eww} update power=false" 
+	(box		:orientation "v"					
+				:space-evenly "false" 	 
+				:vexpand "false" 	
+				:class "powermenu"
+	(revealer	:transition "slideup"				
+				:reveal power			 
+				:duration "550ms"
+	(box		:orientation "v"					
+				:space-evenly "false"
+
+	(button   	:class "button-bspres"  			
+				:tooltip "BSPWM Restart" 
+				:onclick "bspc wm -r" "" )
+
+  	(button		:class "button-reb"					
+	  			:tooltip "Reboot"		 
+				:onclick "reboot"	"")
+
+	(button		:class "button-quit" 				
+				:tooltip "Logout" 		 
+				:onclick "killall bspwm" "")
+
+	(button		:class "button-lock" 				
+				:tooltip "Lock Screen"	 
+				:onclick "betterlockscreen -l"	"")))
+
+	(button		:class "button-off"					
+				:tooltip "Shutdown"		 
+				:onclick "shutdown now"	""))))
+
+(defwindow bar0
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "90%"
+                      :height "10px"
+                      :anchor "top center")
+  :reserve (struts :side "top" :distance "4%")
+  (bar))

@@ -1,0 +1,25 @@
+# https://alacritty.org/config-alacritty.html
+window:
+  opacity: 0.8
+font:
+  normal:
+    # family: Jetbrains Mono NL
+    # style: Oblique
+    family: IosevkaTerm Nerd Font
+    style: Regular
+  size: 16
+cursor:
+  vi_mode_style: 
+    shape: Block
+    blinking: Off
+  style:
+    shape: Beam
+    blinking: On
+
+scrolling:
+  history: 10000
+
+mouse:
+  hide_when_typing: true
+
+
