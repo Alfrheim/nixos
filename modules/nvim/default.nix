@@ -1,6 +1,10 @@
-{ lib, config, pkgs, ... }:
-with lib;
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.modules.nvim;
   # Source my theme
   jabuti-nvim = pkgs.vimUtils.buildVimPlugin {
@@ -12,11 +16,9 @@ let
       sha256 = "sha256-iPjwx/rTd98LUPK1MUfqKXZhQ5NmKx/rN8RX1PIuDFA=";
     };
   };
-in
-{
-  options.modules.nvim = { enable = mkEnableOption "nvim"; };
+in {
+  options.modules.nvim = {enable = mkEnableOption "nvim";};
   config = mkIf cfg.enable {
-
     # home.file.".config/nvim/settings.lua".source = ./init.lua;
 
     home.packages = with pkgs; [

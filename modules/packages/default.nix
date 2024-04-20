@@ -1,7 +1,14 @@
-{ pkgs, lib, config, inputs, kftray, pkgsIdea, pkgsUnstable, ... }:
-
-with lib;
-let
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  kftray,
+  pkgsIdea,
+  pkgsUnstable,
+  ...
+}:
+with lib; let
   cfg = config.modules.packages;
   screen = pkgs.writeShellScriptBin "screen" ''${builtins.readFile ./screen}'';
   bandw = pkgs.writeShellScriptBin "bandw" ''${builtins.readFile ./bandw}'';
@@ -12,10 +19,8 @@ let
   # alfpkgs = import inputs.alfpkgs {config = { allowUnfree = true; permittedInsecurePackages = []; }; };
   # kftray = packages.kftray;
   # datagrip = pkgs.callPackage ../../derivations/datagrip.nix;
-
-in
-{
-  options.modules.packages = { enable = mkEnableOption "packages"; };
+in {
+  options.modules.packages = {enable = mkEnableOption "packages";};
   config = mkIf cfg.enable {
     programs.kitty = {
       enable = true;
@@ -33,25 +38,25 @@ in
       ];
 
       extraConfig = ''
-      # https://old.reddit.com/r/tmux/comments/mesrci/tmux_2_doesnt_seem_to_use_256_colors/
-      set -g default-terminal "xterm-256color"
-      set -ga terminal-overrides ",*256col*:Tc"
-      set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
-      set-environment -g COLORTERM "truecolor"
-      # Mouse works as expected
-      set-option -g mouse on
-      # easy-to-remember split pane commands
-      bind | split-window -h -c "#{pane_current_path}"
-      bind - split-window -v -c "#{pane_current_path}"
-      bind c new-window -c "#{pane_current_path}"
-      set -g status-position top
-      set -s escape-time 0
+        # https://old.reddit.com/r/tmux/comments/mesrci/tmux_2_doesnt_seem_to_use_256_colors/
+        set -g default-terminal "xterm-256color"
+        set -ga terminal-overrides ",*256col*:Tc"
+        set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
+        set-environment -g COLORTERM "truecolor"
+        # Mouse works as expected
+        set-option -g mouse on
+        # easy-to-remember split pane commands
+        bind | split-window -h -c "#{pane_current_path}"
+        bind - split-window -v -c "#{pane_current_path}"
+        bind c new-window -c "#{pane_current_path}"
+        set -g status-position top
+        set -s escape-time 0
       '';
     };
     home.packages = with pkgs; [
       # packages.kftray
       # rofi
-      figlet # terminal banners 
+      figlet # terminal banners
       steam
       arandr
       networkmanagerapplet
@@ -75,7 +80,7 @@ in
       exercism
 
       just
-      
+
       # wally-cli #for ergodox keyboard firmware
       pywal
 
@@ -111,7 +116,7 @@ in
       soapui
       # datagrip
       pkgsIdea.jetbrains.datagrip
-      xclip  # for copy to clipboard
+      xclip # for copy to clipboard
       kubectl
       kubectx
       lens # is not working well with pass check README
@@ -129,7 +134,6 @@ in
 
       qutebrowser
       nodejs
-
 
       #work
       #jetbrains.idea-ultimate #we need to set version 2022.2.5
@@ -168,7 +172,6 @@ in
       bandw
       maintenance
       # wf-recorder
-
 
       #thunar
       xfce.exo # thunar "open terminal here"

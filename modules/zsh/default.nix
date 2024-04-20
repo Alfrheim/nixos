@@ -1,9 +1,13 @@
-{ pkgs, lib, config, ... }:
-with lib;
-let cfg = config.modules.zsh;
-in
 {
-  options.modules.zsh = { enable = mkEnableOption "zsh"; };
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.zsh;
+in {
+  options.modules.zsh = {enable = mkEnableOption "zsh";};
 
   config = mkIf cfg.enable {
     # home.file."Programs/kubectl" = {
@@ -15,9 +19,9 @@ in
       pkgs.grc
     ];
     home.sessionPath = [
-        "$HOME/.local/bin"
-        "$HOME/bin"
-        "$HOME/.nix-profile/bin" #binaries for non-nixOS 
+      "$HOME/.local/bin"
+      "$HOME/bin"
+      "$HOME/.nix-profile/bin" #binaries for non-nixOS
     ];
 
     programs.carapace = {
@@ -39,7 +43,7 @@ in
         "--group-directories-first"
       ];
     };
-    
+
     programs.fish = {
       # We can't use fish a default system shell
       # https://nixos.wiki/wiki/Fish
@@ -81,13 +85,18 @@ in
         # template = "nix flake init --template 'github:alfrheim/nix-templates#$argv'";
       };
       plugins = [
-        { name = "grc"; src = pkgs.fishPlugins.grc.src; }
-        { name = "aws"; src = pkgs.fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "plugin-aws";
-          rev = "e53a1de3f826916cb83f6ebd34a7356af8f754d1";
-          sha256 = "l17v/aJ4PkjYM8kJDA0zUo87UTsfFqq+Prei/Qq0DRA=";
-        }; 
+        {
+          name = "grc";
+          src = pkgs.fishPlugins.grc.src;
+        }
+        {
+          name = "aws";
+          src = pkgs.fetchFromGitHub {
+            owner = "oh-my-fish";
+            repo = "plugin-aws";
+            rev = "e53a1de3f826916cb83f6ebd34a7356af8f754d1";
+            sha256 = "l17v/aJ4PkjYM8kJDA0zUo87UTsfFqq+Prei/Qq0DRA=";
+          };
         }
       ];
       functions = {
@@ -100,8 +109,7 @@ in
           echo $result | xclip -selection clipboard
           echo $result
         ";
-        ggbranch = 
-          "
+        ggbranch = "
           echo (read)|read branch
           for i in cc*
              echo $i
@@ -110,8 +118,7 @@ in
              ..
            end
           ";
-        ggreset= 
-          "
+        ggreset = "
           for i in cc*
              echo $i
              cd $i
@@ -130,7 +137,7 @@ in
       history.share = false; # all terminals share the history, not individual history for terminal
       enableCompletion = true;
       autocd = true;
-      cdpath = [ "~/Work" "~/Projects" "~/tmp" ];
+      cdpath = ["~/Work" "~/Projects" "~/tmp"];
       shellAliases = {
         vim = "nvim";
         cat = "bat --paging=never --style=plain";
@@ -193,7 +200,7 @@ in
       oh-my-zsh = {
         # Extra plugins for zsh
         enable = true;
-        plugins = [ "git" "aliases" "rust" ];
+        plugins = ["git" "aliases" "rust"];
         theme = "norm";
       };
 
@@ -244,71 +251,72 @@ in
     };
 
     /*
-      programs.zsh = {
-      enable = true;
+    programs.zsh = {
+    enable = true;
 
-      # directory to put config files in
-      dotDir = ".config/zsh";
+    # directory to put config files in
+    dotDir = ".config/zsh";
 
-      enableCompletion = true;
-      enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
+    enableCompletion = true;
+    enableAutosuggestions = true;
+    enableSyntaxHighlighting = true;
 
-      # .zshrc
-      initExtra = ''
-      PROMPT="%F{blue}%m %~%b "$'\n'"%(?.%F{green}%Bλ%b |.%F{red}?) %f"
+    # .zshrc
+    initExtra = ''
+    PROMPT="%F{blue}%m %~%b "$'\n'"%(?.%F{green}%Bλ%b |.%F{red}?) %f"
 
-      export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store";
-      export ZK_NOTEBOOK_DIR="~/stuff/notes";
-      export DIRENV_LOG_FORMAT="";
-      bindkey '^ ' autosuggest-accept
+    export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store";
+    export ZK_NOTEBOOK_DIR="~/stuff/notes";
+    export DIRENV_LOG_FORMAT="";
+    bindkey '^ ' autosuggest-accept
 
-      edir() { tar -cz $1 | age -p > $1.tar.gz.age && rm -rf $1 &>/dev/null && echo "$1 encrypted" }
-      ddir() { age -d $1 | tar -xz && rm -rf $1 &>/dev/null && echo "$1 decrypted" }
-      '';
+    edir() { tar -cz $1 | age -p > $1.tar.gz.age && rm -rf $1 &>/dev/null && echo "$1 encrypted" }
+    ddir() { age -d $1 | tar -xz && rm -rf $1 &>/dev/null && echo "$1 decrypted" }
+    '';
 
-      # basically aliases for directories: 
-      # `cd ~dots` will cd into ~/.config/nixos
-      dirHashes = {
-      dots = "$HOME/.config/nixos";
-      stuff = "$HOME/stuff";
-      media = "/run/media/$USER";
-      junk = "$HOME/stuff/other";
-      };
+    # basically aliases for directories:
+    # `cd ~dots` will cd into ~/.config/nixos
+    dirHashes = {
+    dots = "$HOME/.config/nixos";
+    stuff = "$HOME/stuff";
+    media = "/run/media/$USER";
+    junk = "$HOME/stuff/other";
+    };
 
-      # Tweak settings for history
-      history = {
-      save = 1000;
-      size = 1000;
-      path = "$HOME/.cache/zsh_history";
-      };
+    # Tweak settings for history
+    history = {
+    save = 1000;
+    size = 1000;
+    path = "$HOME/.cache/zsh_history";
+    };
 
-      # Set some aliases
-      shellAliases = {
-      c = "clear";
-      mkdir = "mkdir -vp";
-      rm = "rm -rifv";
-      mv = "mv -iv";
-      cp = "cp -riv";
-      cat = "bat --paging=never --style=plain";
-      ls = "exa -a --icons";
-      tree = "exa --tree --icons";
-      nd = "nix develop -c $SHELL";
-      rebuild = "doas nixos-rebuild switch --flake $NIXOS_CONFIG_DIR --fast; notify-send 'Rebuild complete\!'";
-      };
+    # Set some aliases
+    shellAliases = {
+    c = "clear";
+    mkdir = "mkdir -vp";
+    rm = "rm -rifv";
+    mv = "mv -iv";
+    cp = "cp -riv";
+    cat = "bat --paging=never --style=plain";
+    ls = "exa -a --icons";
+    tree = "exa --tree --icons";
+    nd = "nix develop -c $SHELL";
+    rebuild = "doas nixos-rebuild switch --flake $NIXOS_CONFIG_DIR --fast; notify-send 'Rebuild complete\!'";
+    };
 
-      # Source all plugins, nix-style
-      plugins = [
-      {
-      name = "auto-ls";
-      src = pkgs.fetchFromGitHub {
-      owner = "notusknot";
-      repo = "auto-ls";
-      rev = "62a176120b9deb81a8efec992d8d6ed99c2bd1a1";
-      sha256 = "08wgs3sj7hy30x03m8j6lxns8r2kpjahb9wr0s0zyzrmr4xwccj0";
-      };
-      }
-      ];
-      }; */
+    # Source all plugins, nix-style
+    plugins = [
+    {
+    name = "auto-ls";
+    src = pkgs.fetchFromGitHub {
+    owner = "notusknot";
+    repo = "auto-ls";
+    rev = "62a176120b9deb81a8efec992d8d6ed99c2bd1a1";
+    sha256 = "08wgs3sj7hy30x03m8j6lxns8r2kpjahb9wr0s0zyzrmr4xwccj0";
+    };
+    }
+    ];
+    };
+    */
   };
 }

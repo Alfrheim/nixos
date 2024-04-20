@@ -1,14 +1,16 @@
-{ pkgs, lib, config, ... }:
-
-with lib;
-let 
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
   cfg = config.modules.git;
   gitcontents = "sh -c '${pkgs.pass}/bin/pass show Globick/gitcredentials'";
 
   readSecret = path: builtins.readFile path; # We do that for the time being. Need to put properly in the secrets
-in
-{
-  options.modules.git = { enable = mkEnableOption "git"; };
+in {
+  options.modules.git = {enable = mkEnableOption "git";};
   config = mkIf cfg.enable {
     programs.git = {
       enable = true;
@@ -20,12 +22,12 @@ in
           condition = "gitdir:~/Work/**";
           contents = {
             user.name = "marc-badia";
-            user.email = (readSecret /home/alfrheim/.globickemail);
+            user.email = readSecret /home/alfrheim/.globickemail;
           };
         }
       ];
       delta = {
-        enable = true;        
+        enable = true;
         options = {
           side-by-side = true;
           light = false;
@@ -61,7 +63,7 @@ in
       };
     };
 
-   programs.ssh = {
+    programs.ssh = {
       enable = true;
       matchBlocks = {
         "github-default" = {
@@ -72,7 +74,7 @@ in
         codecommit-globick = lib.hm.dag.entryAfter ["github-default"] {
           host = "git-codecommit.*.amazonaws.com";
           hostname = "git-codecommit.eu-west-1.amazonaws.com";
-          user = (readSecret /home/alfrheim/.awsuser);
+          user = readSecret /home/alfrheim/.awsuser;
           extraOptions = {
             IdentityFile = "~/.ssh/codecommit_rsa";
             AddKeysToAgent = "yes";
@@ -88,6 +90,5 @@ in
         };
       };
     };
-
   };
 }

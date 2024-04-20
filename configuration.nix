@@ -1,14 +1,18 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }: let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   sddmTheme = import ./sddm-theme.nix {inherit pkgs;};
 in {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -18,7 +22,7 @@ in {
   # we deactivate ipv6 for nordvpn
   networking.enableIPv6 = false;
   boot.kernel.sysctl."net.ipv6.conf.tun0.disable_ipv6" = true;
-  
+
   programs.zsh.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -53,10 +57,10 @@ in {
     LC_TIME = "ca_AD.UTF-8";
   };
 
-    services.xserver.desktopManager.xterm.enable = false;
-    # services.gnome.gnome-keyring.enable = true; 
+  services.xserver.desktopManager.xterm.enable = false;
+  # services.gnome.gnome-keyring.enable = true;
 
-   # Enable the X11 windowing system.
+  # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
     displayManager = {
@@ -72,19 +76,18 @@ in {
   # services.xserver.displayManager.lightdm.enable = true;
   services.xserver.windowManager.leftwm.enable = true;
 
-
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   # xdg.portal.config.common.default = "*";
   # services.xserver.displayManager.defaultSession = "none+leftwm";
   programs.hyprland.enable = true;
-    hardware = {
-        bluetooth.enable = true;
-        opengl = {
-            enable = true;
-            driSupport = true;
-        };
+  hardware = {
+    bluetooth.enable = true;
+    opengl = {
+      enable = true;
+      driSupport = true;
     };
+  };
   services.xserver.displayManager.defaultSession = "hyprland";
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "alfrheim";
@@ -93,31 +96,31 @@ in {
   services.xserver.displayManager.gdm.enable = false;
   # services.xserver.desktopManager.gnome.enable = true;
 
-  services.udev.extraRules='' 
-  # Rules for Oryx web flashing and live training
-KERNEL=="hidraw*", ATTRS{idVendor}=="16c0", MODE="0664", GROUP="plugdev"
-KERNEL=="hidraw*", ATTRS{idVendor}=="3297", MODE="0664", GROUP="plugdev"
+  services.udev.extraRules = ''
+      # Rules for Oryx web flashing and live training
+    KERNEL=="hidraw*", ATTRS{idVendor}=="16c0", MODE="0664", GROUP="plugdev"
+    KERNEL=="hidraw*", ATTRS{idVendor}=="3297", MODE="0664", GROUP="plugdev"
 
-# Legacy rules for live training over webusb (Not needed for firmware v21+)
-  # Rule for all ZSA keyboards
-  SUBSYSTEM=="usb", ATTR{idVendor}=="3297", GROUP="plugdev"
-  # Rule for the Moonlander
-  SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="1969", GROUP="plugdev"
-  # Rule for the Ergodox EZ
-  SUBSYSTEM=="usb", ATTR{idVendor}=="feed", ATTR{idProduct}=="1307", GROUP="plugdev"
-  # Rule for the Planck EZ
-  SUBSYSTEM=="usb", ATTR{idVendor}=="feed", ATTR{idProduct}=="6060", GROUP="plugdev"
+    # Legacy rules for live training over webusb (Not needed for firmware v21+)
+      # Rule for all ZSA keyboards
+      SUBSYSTEM=="usb", ATTR{idVendor}=="3297", GROUP="plugdev"
+      # Rule for the Moonlander
+      SUBSYSTEM=="usb", ATTR{idVendor}=="3297", ATTR{idProduct}=="1969", GROUP="plugdev"
+      # Rule for the Ergodox EZ
+      SUBSYSTEM=="usb", ATTR{idVendor}=="feed", ATTR{idProduct}=="1307", GROUP="plugdev"
+      # Rule for the Planck EZ
+      SUBSYSTEM=="usb", ATTR{idVendor}=="feed", ATTR{idProduct}=="6060", GROUP="plugdev"
 
-# Wally Flashing rules for the Ergodox EZ
-ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", ENV{ID_MM_DEVICE_IGNORE}="1"
-ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789A]?", ENV{MTP_NO_PROBE}="1"
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789ABCD]?", MODE:="0666"
-KERNEL=="ttyACM*", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", MODE:="0666"
+    # Wally Flashing rules for the Ergodox EZ
+    ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", ENV{ID_MM_DEVICE_IGNORE}="1"
+    ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789A]?", ENV{MTP_NO_PROBE}="1"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789ABCD]?", MODE:="0666"
+    KERNEL=="ttyACM*", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="04[789B]?", MODE:="0666"
 
-# Keymapp / Wally Flashing rules for the Moonlander and Planck EZ
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE:="0666", SYMLINK+="stm32_dfu"
-# Keymapp Flashing rules for the Voyager
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="3297", MODE:="0666", SYMLINK+="ignition_dfu"
+    # Keymapp / Wally Flashing rules for the Moonlander and Planck EZ
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE:="0666", SYMLINK+="stm32_dfu"
+    # Keymapp Flashing rules for the Voyager
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="3297", MODE:="0666", SYMLINK+="ignition_dfu"
   '';
 
   # Configure keymap in X11
@@ -155,17 +158,16 @@ SUBSYSTEMS=="usb", ATTRS{idVendor}=="3297", MODE:="0666", SYMLINK+="ignition_dfu
     isNormalUser = true;
     description = "Alfrheim";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "plugdev" "input" "docker" "video"];
+    extraGroups = ["networkmanager" "wheel" "plugdev" "input" "docker" "video"];
     packages = with pkgs; [
       firefox
       swww
       # where-is-my-sddm-theme
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
   virtualisation.docker.enable = true;
-
 
   # Enable automatic login for the user.
   # services.xserver.displayManager.autoLogin.enable = true;
@@ -177,38 +179,38 @@ SUBSYSTEMS=="usb", ATTRS{idVendor}=="3297", MODE:="0666", SYMLINK+="ignition_dfu
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-run"
-    "obsidian"
-  ];
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "steam"
+      "steam-original"
+      "steam-run"
+      "obsidian"
+    ];
 
-    fonts = {
-        fontDir.enable = true;
-        packages = with pkgs; [
-            jetbrains-mono
-            roboto
-            openmoji-color
-            (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "Iosevka" "FiraMono" ]; })
-        ];
+  fonts = {
+    fontDir.enable = true;
+    packages = with pkgs; [
+      jetbrains-mono
+      roboto
+      openmoji-color
+      (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode" "Iosevka" "FiraMono"];})
+    ];
 
-        fontconfig = {
-            hinting.autohint = true;
-            defaultFonts = {
-              monospace = [ "Iosevka"];
-              emoji = [ "OpenMoji Color" ];
-            };
-        };
+    fontconfig = {
+      hinting.autohint = true;
+      defaultFonts = {
+        monospace = ["Iosevka"];
+        emoji = ["OpenMoji Color"];
+      };
     };
+  };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-   neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-   wget
-   libsForQt5.qt5.qtquickcontrols2
-   libsForQt5.qt5.qtgraphicaleffects
-  
+    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtgraphicaleffects
   ];
 
   environment.variables = {
@@ -216,14 +218,14 @@ SUBSYSTEMS=="usb", ATTRS{idVendor}=="3297", MODE:="0666", SYMLINK+="ignition_dfu
   };
 
   environment.sessionVariables = rec {
-    XDG_CACHE_HOME  = "$HOME/.cache";
+    XDG_CACHE_HOME = "$HOME/.cache";
     XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME   = "$HOME/.local/share";
-    XDG_STATE_HOME  = "$HOME/.local/state";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_STATE_HOME = "$HOME/.local/state";
 
     # Not officially in the specification
-    XDG_BIN_HOME    = "$HOME/.local/bin";
-    PATH = [ 
+    XDG_BIN_HOME = "$HOME/.local/bin";
+    PATH = [
       "${XDG_BIN_HOME}"
     ];
   };
@@ -254,5 +256,4 @@ SUBSYSTEMS=="usb", ATTRS{idVendor}=="3297", MODE:="0666", SYMLINK+="ignition_dfu
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }

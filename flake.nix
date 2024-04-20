@@ -15,44 +15,49 @@
     };
 
     nixpkgs-idea2022-2-5.url = "github:nixos/nixpkgs/1ed91531b68f820ba026e3cb8fd1e6ed40d64ee1";
-
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
+  outputs = inputs @ {
+    nixpkgs,
+    home-manager,
+    ...
+  }: {
     nixosConfigurations = {
       miniAlf = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           # ./modules/system/configuration.nix
-                    ./configuration.nix
-                    # ./derivations/default.nix
+          ./configuration.nix
+          # ./derivations/default.nix
           {
             nix = {
               settings.experimental-features = ["nix-command" "flakes"];
             };
           }
           {
-             nixpkgs.config.permittedInsecurePackages = [
-                "electron-25.9.0"
-              ];
-              nixpkgs.config.packageOverrides = pkgs: {
-                soapui = pkgs.callPackage ./derivations/soapui.nix {};
-                };
+            nixpkgs.config.permittedInsecurePackages = [
+              "electron-25.9.0"
+            ];
+            nixpkgs.config.packageOverrides = pkgs: {
+              soapui = pkgs.callPackage ./derivations/soapui.nix {};
+            };
           }
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.alfrheim = import ./user.nix ;
-              extraSpecialArgs = { inherit inputs; helix-flake = inputs.helix; 
-                  pkgsUnstable = import inputs.pkgsUnstable {
-                    config.allowUnfree = true;  
-                    permittedInsecurePackages = [];                 
-                  };
-                  pkgsIdea = import inputs.nixpkgs-idea2022-2-5 {
-                    config.allowUnfree = true;  
-                  };
+              users.alfrheim = import ./user.nix;
+              extraSpecialArgs = {
+                inherit inputs;
+                helix-flake = inputs.helix;
+                pkgsUnstable = import inputs.pkgsUnstable {
+                  config.allowUnfree = true;
+                  permittedInsecurePackages = [];
+                };
+                pkgsIdea = import inputs.nixpkgs-idea2022-2-5 {
+                  config.allowUnfree = true;
+                };
               };
             };
             nixpkgs.overlays = [
@@ -68,13 +73,13 @@
                 });
               })
             ];
-            
+
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
 
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-        # home-manager.extraSpecialArgs = { inherit inputs; helix-flake = inputs.helix; };
+            # Optionally use extraSpecialArgs
+            # to pass through arguments to home.nix
+            # home-manager.extraSpecialArgs = { inherit inputs; helix-flake = inputs.helix; };
           }
         ];
       };

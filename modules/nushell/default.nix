@@ -1,9 +1,13 @@
-{ pkgs, lib, config, ... }:
-with lib;
-let cfg = config.modules.nushell;
-in
 {
-  options.modules.nushell = { enable = mkEnableOption "nushell"; };
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.nushell;
+in {
+  options.modules.nushell = {enable = mkEnableOption "nushell";};
 
   config = mkIf cfg.enable {
     home.packages = [
