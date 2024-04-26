@@ -3,7 +3,6 @@
   lib,
   config,
   inputs,
-  kftray,
   pkgsIdea,
   pkgsUnstable,
   ...
@@ -56,12 +55,12 @@ in {
     home.packages = with pkgs; [
       # packages.kftray
       # rofi
+      atac
       figlet # terminal banners
       steam
       arandr
       networkmanagerapplet
       brave
-      # neofetch
       fastfetch
       enpass
       zathura

@@ -1,5 +1,8 @@
 {
   description = "NixOS configuration";
+  # Need to learn from:
+  # https://github.com/Misterio77/nix-config/tree/main
+  # https://github.com/Misterio77/nix-starter-configs
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
@@ -18,17 +21,28 @@
   };
 
   outputs = inputs @ {
+    self,
     nixpkgs,
     home-manager,
     ...
-  }: {
+  }: let
+    inherit (self) outputs;
+    # Supported systems for your flake packages, shell, etc.
+    systems = [
+      "i686-linux"
+      "x86_64-linux"
+    ];
+    # This is a function that generates an attribute by calling a function you
+    # pass to it, with each system as an argument
+    forEachSystems = nixpkgs.lib.genAttrs systems;
+  in {
+    packages = forEachSystems (pkgs: import ./pkgs {inherit pkgs;});
+    overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
       miniAlf = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          # ./modules/system/configuration.nix
           ./configuration.nix
-          # ./derivations/default.nix
           {
             nix = {
               settings.experimental-features = ["nix-command" "flakes"];
@@ -49,7 +63,7 @@
               useUserPackages = true;
               users.alfrheim = import ./user.nix;
               extraSpecialArgs = {
-                inherit inputs;
+                inherit inputs outputs;
                 helix-flake = inputs.helix;
                 pkgsUnstable = import inputs.pkgsUnstable {
                   config.allowUnfree = true;
@@ -61,25 +75,8 @@
               };
             };
             nixpkgs.overlays = [
-              (final: prev: {
-                zsa-udev-rules = prev.zsa-udev-rules.overrideAttrs (old: rec {
-                  version = "2.1.3";
-                  src = final.fetchFromGitHub {
-                    owner = "zsa";
-                    repo = "wally";
-                    rev = "623a50d0e0b90486e42ad8ad42b0a7313f7a37b3";
-                    sha256 = "sha256-meR2V7T4hrJFXFPLENHoAgmOILxxynDBk0BLqzsAZvQ=";
-                  };
-                });
-              })
+              outputs.overlays.additions
             ];
-
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-
-            # Optionally use extraSpecialArgs
-            # to pass through arguments to home.nix
-            # home-manager.extraSpecialArgs = { inherit inputs; helix-flake = inputs.helix; };
           }
         ];
       };
