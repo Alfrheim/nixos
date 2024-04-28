@@ -56,6 +56,8 @@ in {
       # packages.kftray
       # rofi
       atac
+      kftray
+      gnome.file-roller
       figlet # terminal banners
       steam
       arandr
