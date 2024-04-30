@@ -81,7 +81,30 @@ in {
             formatter = {command = "alejandra";};
             auto-format = true;
           }
+          {
+            name = "json";
+            # formatter = {
+            # command = "prettier";
+            # args = ["--parser" "json"];
+            # };
+          }
+          # {
+          #   name = "scheme";
+          #   formatter = {command = "alejandra";};
+          #   auto-format = true;
+          # }
         ];
+
+        language-server.vscode-json-language-server = {
+          command = "vscode-json-languageserver";
+          args = ["--stdio"];
+          config.provideFormatter = true;
+          config.json.validate.enable = true;
+        };
+        # language-server.scheme-language-server = {
+        # command = "${typescript-language-server}/bin/typescript-language-server";
+        # args = ["--stdio" "--tsserver-path=${typescript}/lib/node_modules/typescript/lib"];
+        # };
       };
 
       settings = {

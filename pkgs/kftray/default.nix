@@ -3,11 +3,12 @@
 {lib, ...}:
 with import <nixpkgs> {}; let
   pname = "kftray";
-  version = "0.9.8";
+  version = "0.9.7";
 
   src = fetchurl {
     url = "https://github.com/hcavarsan/kftray/releases/download/v${version}/kftray_${version}_amd64.AppImage";
-    hash = "sha256-mU7FDO2Ut1aA93lRBoSZQs6GQJ18pPunHugfrC27eAg=";
+    # hash = "sha256-mU7FDO2Ut1aA93lRBoSZQs6GQJ18pPunHugfrC27eAg=";
+    hash = "sha256-w6mvAHANzdirnB5ypvY5FsKCe1+ZJjrQy5+bkyhHy9k=";
   };
 
   appimageContents = appimageTools.extract {inherit pname version src;};
@@ -16,12 +17,26 @@ in
     inherit pname version;
     src = appimageContents;
 
-    extraPkgs = {pkgs, ...} @ args:
-      [
-        pkgs.libthai
-        pkgs.hidapi
-      ]
-      ++ appimageTools.defaultFhsEnvArgs.multiPkgs args;
+    extraPkgs = {pkgs, ...} @ args: [
+      pkgs.libthai
+      pkgs.hidapi
+      pkgs.python3
+      pkgs.python311Packages.py-multibase
+      # (pkgs.python3.withPackages (python-pkgs: [
+      # python
+      # ]))
+      webkitgtk
+      webkitgtk_4_1
+      gtk3
+      cairo
+      gdk-pixbuf
+      glib
+      dbus
+      openssl_3
+      librsvg
+      libayatana-appindicator
+    ];
+    # ++ appimageTools.defaultFhsEnvArgs.multiPkgs args;
 
     extraInstallCommands = ''
       mv $out/bin/${pname}-${version} $out/bin/${pname}
