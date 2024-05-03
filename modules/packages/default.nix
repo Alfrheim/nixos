@@ -55,7 +55,7 @@ in {
     home.packages = with pkgs; [
       # packages.kftray
       # rofi
-      atac
+      pkgsUnstable.atac #we use unstable instead of our package. We keep ours in case they stop updating
       kftray
       gnome.file-roller
       figlet # terminal banners

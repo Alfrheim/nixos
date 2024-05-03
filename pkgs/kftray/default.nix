@@ -13,29 +13,27 @@ with import <nixpkgs> {}; let
 
   appimageContents = appimageTools.extract {inherit pname version src;};
 in
-  appimageTools.wrapAppImage {
-    inherit pname version;
-    src = appimageContents;
+  appimageTools.wrapType2 {
+    inherit pname version src;
 
-    extraPkgs = {pkgs, ...} @ args: [
-      pkgs.libthai
-      pkgs.hidapi
-      pkgs.python3
-      pkgs.python311Packages.py-multibase
-      # (pkgs.python3.withPackages (python-pkgs: [
-      # python
-      # ]))
-      webkitgtk
-      webkitgtk_4_1
-      gtk3
-      cairo
-      gdk-pixbuf
-      glib
-      dbus
-      openssl_3
-      librsvg
-      libayatana-appindicator
-    ];
+    extraPkgs = pkgs:
+      with pkgs; [
+        libthai
+        hidapi
+        # python3
+        # python311Packages.py-multibase
+        python311Packages.virtualenvwrapper
+        webkitgtk
+        webkitgtk_4_1
+        gtk3
+        cairo
+        gdk-pixbuf
+        glib
+        dbus
+        openssl_3
+        librsvg
+        libayatana-appindicator
+      ];
     # ++ appimageTools.defaultFhsEnvArgs.multiPkgs args;
 
     extraInstallCommands = ''
@@ -44,7 +42,7 @@ in
       install -Dm444 ${appimageContents}/kftray.desktop -t $out/share/applications
       install -Dm444 ${appimageContents}/kftray.png -t $out/share/pixmaps
       substituteInPlace $out/share/applications/kftray.desktop \
-        --replace 'Exec=AppRun' "Exec=$out/bin/${pname} --"
+      --replace 'Exec=AppRun' "Exec=$out/bin/${pname} --"
     '';
 
     meta = with lib; {
