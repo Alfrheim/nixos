@@ -74,7 +74,7 @@ in {
       geoclue2 #redshift dependency
       blueman
       # spotify
-      youtube-music # so far the audio is not working, seems similar to the problem with microsoft edge
+      pkgsUnstable.youtube-music # so far the audio is not working, seems similar to the problem with microsoft edge
       ncspot
       pkgsUnstable.flameshot
       distrobox #pods of distros to run apps
@@ -120,7 +120,7 @@ in {
       xclip # for copy to clipboard
       kubectl
       kubectx
-      lens # is not working well with pass check README
+      pkgsUnstable.lens
       awscli2
       postgresql_15 # we need in order to make a copy of the db to the local one. Maybe we can put that into the shell file
       powershell
@@ -137,8 +137,8 @@ in {
       nodejs
 
       #work
-      #jetbrains.idea-ultimate #we need to set version 2022.2.5
-      pkgsIdea.jetbrains.idea-ultimate
+      #jetbrains.idea-ultimate
+      pkgsIdea.jetbrains.idea-ultimate #version 2022.2.5
       jetbrains.idea-community
       google-chrome
       #jetbrains.rider
