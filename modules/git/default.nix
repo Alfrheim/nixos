@@ -12,6 +12,10 @@ with lib; let
 in {
   options.modules.git = {enable = mkEnableOption "git";};
   config = mkIf cfg.enable {
+    services.gpg-agent = {
+      defaultCacheTtl = 86400;
+      defaultCacheTtlSsh = 86400;
+    };
     programs.git = {
       enable = true;
       userName = "Alfrheim";
