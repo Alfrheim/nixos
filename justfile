@@ -2,11 +2,15 @@ default:
     echo 'Hello, world!'
 
 build:
-     sudo nixos-rebuild switch --flake ".#miniAlf" --impure
+     sudo nixos-rebuild build --flake ".#miniAlf" --impure
      notify-send "build finished!"
 
 build-trace:
      sudo nixos-rebuild switch --flake ".#miniAlf" --impure --show-trace
+
+upgrade:
+     sudo nixos-rebuild switch --flake ".#miniAlf" --impure
+     notify-send "build finished!"
 
 update:
      sudo nix-channel --update
