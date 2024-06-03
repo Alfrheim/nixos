@@ -63,11 +63,11 @@ in {
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    displayManager = {
-      sddm.enable = lib.mkDefault true;
-      sddm.theme = "${sddmTheme}";
-      sddm.wayland.enable = true;
-    };
+  };
+  services.displayManager = {
+    sddm.enable = lib.mkDefault true;
+    sddm.theme = "${sddmTheme}";
+    sddm.wayland.enable = true;
   };
   # services.xserver.displayManager.sddm.wayland.enable = true;
   # services.xserver.displayManager.sddm.theme="where_is_my_sddm_theme";
@@ -88,9 +88,9 @@ in {
       driSupport = true;
     };
   };
-  services.xserver.displayManager.defaultSession = "hyprland";
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "alfrheim";
+  services.displayManager.defaultSession = "hyprland";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "alfrheim";
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = false;
@@ -125,8 +125,8 @@ in {
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
   };
 
   # Enable CUPS to print documents.

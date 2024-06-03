@@ -23,7 +23,7 @@ in {
 
     home.packages = with pkgs; [
       # rnix-lsp
-      nixfmt # Nix
+      nixfmt-classic # Nix, need to change it eventually to nixfmt-rfc-style
       sumneko-lua-language-server
       stylua # Lua
     ];

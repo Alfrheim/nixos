@@ -43,7 +43,7 @@ in {
         stylua
         black
         lua
-        java-language-server
+        jdt-language-server
         #python-lsp-server
         omnisharp-roslyn
         #nix formating

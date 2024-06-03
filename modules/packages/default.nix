@@ -56,7 +56,7 @@ in {
       # packages.kftray
       # rofi
       pkgsUnstable.atac #we use unstable instead of our package. We keep ours in case they stop updating
-      kftray
+      # kftray
       gnome.file-roller
       figlet # terminal banners
       steam
