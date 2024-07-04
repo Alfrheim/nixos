@@ -82,11 +82,11 @@ in {
             auto-format = true;
           }
           {
-            name = "json";
-            # formatter = {
-            # command = "prettier";
-            # args = ["--parser" "json"];
-            # };
+            name = "jsonc";
+            formatter = {
+              command = "prettier";
+              args = ["--parser" "json"];
+            };
           }
           # {
           #   name = "scheme";

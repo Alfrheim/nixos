@@ -225,6 +225,7 @@ in {
         windowrulev2 = float,class:^(Enpass)$
         windowrulev2 = float,class:^(nm-connection-editor)$
         windowrulev2 = float,class:^(org.kde.polkit-kde-authentication-agent-1)$
+        windowrulev2 = float,class:^(polkit-gnome-authentication-agent-1)$
 
         # windowrulev2 = workspace 9,class:^(Enpass)$
 
