@@ -51,10 +51,11 @@
           {
             nixpkgs.config.permittedInsecurePackages = [
               "electron-25.9.0"
+              "electron-27.3.11"
             ];
-            nixpkgs.config.packageOverrides = pkgs: {
-              soapui = pkgs.callPackage ./derivations/soapui.nix {};
-            };
+            # nixpkgs.config.packageOverrides = pkgs: {
+            # soapui = pkgs.callPackage ./derivations/soapui.nix {};
+            # };
           }
           home-manager.nixosModules.home-manager
           {
@@ -67,7 +68,6 @@
                 helix-flake = inputs.helix;
                 pkgsUnstable = import inputs.pkgsUnstable {
                   config.allowUnfree = true;
-                  permittedInsecurePackages = [];
                 };
                 pkgsIdea = import inputs.nixpkgs-idea2022-2-5 {
                   config.allowUnfree = true;

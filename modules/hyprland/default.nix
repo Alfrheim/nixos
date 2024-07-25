@@ -77,7 +77,7 @@ in {
           sensitivity = 0.0; # -1.0 - 1.0, 0 means no modification.
         };
         general = {
-          gaps_in = 6;
+          gaps_in = 8;
           gaps_out = 20;
           border_size = 4;
           "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
@@ -135,7 +135,7 @@ in {
 
         master = {
           # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-          new_is_master = true;
+          new_status = "master";
           # soon :)
           # orientation = "center";
         };

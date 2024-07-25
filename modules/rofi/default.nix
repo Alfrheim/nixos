@@ -10,9 +10,10 @@ in {
   options.modules.rofi = {enable = mkEnableOption "rofi";};
   config = mkIf cfg.enable {
     programs.rofi = {
-      enable = true;
+      enable = false;
     };
     home.packages = with pkgs; [
+      rofi-wayland
     ];
 
     home.file.".config/rofi/" = {

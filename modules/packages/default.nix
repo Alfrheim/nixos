@@ -13,7 +13,12 @@ with lib; let
   bandw = pkgs.writeShellScriptBin "bandw" ''${builtins.readFile ./bandw}'';
   maintenance = pkgs.writeShellScriptBin "maintenance" ''${builtins.readFile ./maintenance}'';
   # pkgsUnstable = import <nixpkgs-unstable> {config = { allowUnfree = true; }; };
-  # pkgsUnstable = import inputs.pkgsUnstable {config = { allowUnfree = true; permittedInsecurePackages = ["electron-25.9.0"]; }; };
+  pkgsUnstable = import inputs.pkgsUnstable {
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = ["electron-25.9.0" "electron-27.3.11"];
+    };
+  };
   # pkgsUnstable = import inputs.pkgsUnstable {config = { allowUnfree = true; permittedInsecurePackages = []; }; };
   # alfpkgs = import inputs.alfpkgs {config = { allowUnfree = true; permittedInsecurePackages = []; }; };
   # kftray = packages.kftray;
@@ -114,7 +119,7 @@ in {
       pkgsUnstable.microsoft-edge #sound not working, can't find alsa, need to install throught .deb meanwhile
 
       jdk21
-      soapui
+      pkgsUnstable.soapui
       # datagrip
       pkgsIdea.jetbrains.datagrip
       xclip # for copy to clipboard
