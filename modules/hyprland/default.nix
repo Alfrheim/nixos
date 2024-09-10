@@ -187,6 +187,7 @@ in {
         misc {
             # See https://wiki.hyprland.org/Configuring/Variables/ for more
             force_default_wallpaper = -1 # Set to 0 to disable the anime mascot wallpapers
+            animate_manual_resizes = true
         }
 
         # Example per-device config
@@ -254,6 +255,12 @@ in {
         bind = $mainMod, right, movefocus, r
         bind = $mainMod, up, movefocus, u
         bind = $mainMod, down, movefocus, d
+
+        # Move focus with mainMod + arrow keys
+        bind = $mainMod Control_L, 4, resizeactive , -50 0
+        bind = $mainMod Control_L, 6, resizeactive , 50 0
+        bind = $mainMod Control_L, 8, resizeactive , 0 -50
+        bind = $mainMod Control_L, 5, resizeactive , 0 50
 
         # Move focus with mainMod + arrow keys
         bind = SUPER_SHIFT, left, movewindow, l
