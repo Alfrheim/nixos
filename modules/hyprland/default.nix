@@ -16,7 +16,8 @@ in {
       systemd.enable = true;
       xwayland.enable = true;
       settings = {
-        monitor = "X11-1,3840x2160@60,0x0,1";
+        # monitor = "X11-1,3840x2160@60,0x0,1";
+        monitor = "DP-1,3840x2160@60,0x0,1";
 
         exec-once = [
           "swaybg -i ~/.wallpaper"

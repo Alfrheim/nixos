@@ -15,55 +15,56 @@ in {
     #home.file.".config/helix/languages.toml".source = ./config/languages.toml;
     home.packages = with pkgs;
       [
-        jq
-        lazygit
-        gitui #terminal git manager aka Magit
-        lf # terminal filemanager
-        projectable #terminal file manager for projects
-        zig
-        lldb
-        haskell-language-server
-        gopls
-        cmake-language-server
-        zls
+        # lsp-ai
         android-file-transfer
-
-        shfmt
-        rustfmt
-        broot
-        rust-analyzer
-        pyright
-        # rnix-lsp
-        kotlin-language-server
-        sumneko-lua-language-server
-        taplo-lsp
-        taplo-cli
-        yaml-language-server
-        tree-sitter
-        stylua
         black
-        lua
+        broot
+        cmake-language-server
+        gitui #terminal git manager aka Magit
+        gopls
+        haskell-language-server
         jdt-language-server
-        #python-lsp-server
-        omnisharp-roslyn
+        jq
+        kotlin-language-server
+        lazygit
+        lf # terminal filemanager
+        lldb_18
+        lua
+        pkgsUnstable.markdown-oxide
         #nix formating
-        nixpkgs-review
         nix-index
-        pkgsUnstable.nil
+        nixpkgs-review
+        omnisharp-roslyn
         pkgsUnstable.alejandra
+        pkgsUnstable.nil
+        projectable #terminal file manager for projects
+        pyright
+        #python-lsp-server
+        # rnix-lsp
+        rust-analyzer
+        rustfmt
+        shfmt
+        stylua
+        sumneko-lua-language-server
+        taplo-cli
+        taplo-lsp
+        tree-sitter
+        yaml-language-server
+        zig
+        zls
       ]
       ++ (with pkgs.nodePackages; [
         bash-language-server
-        vscode-json-languageserver
+        dockerfile-language-server-nodejs
+        markdownlint-cli2
+        node2nix
+        prettier
         typescript-language-server
         vscode-css-languageserver-bin
         vscode-html-languageserver-bin
-        dockerfile-language-server-nodejs
+        vscode-json-languageserver
         vue-language-server
         yaml-language-server
-        node2nix
-        markdownlint-cli2
-        prettier
       ]);
     programs.helix = {
       enable = true;
@@ -100,6 +101,11 @@ in {
           args = ["--stdio"];
           config.provideFormatter = true;
           config.json.validate.enable = true;
+        };
+
+        language-server.jdtls = {
+          command = "jdtls";
+          args = ["--jvm-arg=-javaagent:/home/alfrheim/Programs/lombok.jar"];
         };
         # language-server.scheme-language-server = {
         # command = "${typescript-language-server}/bin/typescript-language-server";

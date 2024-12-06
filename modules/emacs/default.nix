@@ -9,8 +9,10 @@ with lib; let
 in {
   options.modules.emacs = {enable = mkEnableOption "emacs";};
   config = mkIf cfg.enable {
+    programs.emacs = {
+      enable = true;
+    };
     home.packages = with pkgs; [
-      emacs
       (nerdfonts.override {fonts = ["SourceCodePro"];})
     ];
   };

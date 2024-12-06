@@ -60,8 +60,10 @@ in {
     home.packages = with pkgs; [
       # packages.kftray
       # rofi
+      yai
       pkgsUnstable.atac #we use unstable instead of our package. We keep ours in case they stop updating
       # kftray
+      pkgsUnstable.zed-editor
       gnome.file-roller
       figlet # terminal banners
       steam
