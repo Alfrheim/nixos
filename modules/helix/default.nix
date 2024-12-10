@@ -60,8 +60,7 @@ in {
         node2nix
         prettier
         typescript-language-server
-        vscode-css-languageserver-bin
-        vscode-html-languageserver-bin
+        vscode-langservers-extracted
         vscode-json-languageserver
         vue-language-server
         yaml-language-server
@@ -87,6 +86,20 @@ in {
             formatter = {
               command = "prettier";
               args = ["--parser" "json"];
+            };
+          }
+          {
+            name = "html";
+            formatter = {
+              command = "prettier";
+              args = ["--parser" "html"];
+            };
+          }
+          {
+            name = "markdown";
+            formatter = {
+              command = "prettier";
+              args = ["--parser" "markdown"];
             };
           }
           # {

@@ -143,11 +143,6 @@
     protectKernelImage = true;
   };
 
-  # Sound
-  sound = {
-    enable = true;
-  };
-
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
@@ -161,9 +156,8 @@
   # Disable bluetooth, enable pulseaudio, enable opengl (for Wayland)
   hardware = {
     bluetooth.enable = true;
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport = true;
     };
   };
 

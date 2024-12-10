@@ -98,11 +98,6 @@ in {
             size = 3;
             passes = 1;
           };
-
-          drop_shadow = true;
-          shadow_range = 30;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
         };
 
         # See https://wiki.hyprland.org/Configuring/Keywords/ for more
@@ -206,7 +201,7 @@ in {
         ####   https://github.com/hyprwm/Hyprland/issues/3450
         # -- Fix odd behaviors in IntelliJ IDEs --
         #! Fix focus issues when dialogs are opened or closed
-        windowrulev2 = windowdance,class:^(jetbrains-.*)$,floating:1
+        #windowrulev2 = windowdance,class:^(jetbrains-.*)$,floating:1
         #! Fix splash screen showing in weird places and prevent annoying focus takeovers
         windowrulev2 = center,class:^(jetbrains-.*)$,title:^(splash)$,floating:1
         windowrulev2 = nofocus,class:^(jetbrains-.*)$,title:^(splash)$,floating:1

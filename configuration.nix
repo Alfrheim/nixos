@@ -83,9 +83,8 @@ in {
   programs.hyprland.enable = true;
   hardware = {
     bluetooth.enable = true;
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport = true;
     };
   };
   services.displayManager.defaultSession = "hyprland";
@@ -133,7 +132,6 @@ in {
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {

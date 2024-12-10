@@ -33,7 +33,7 @@ in {
     programs.eza = {
       enable = true;
       git = true;
-      icons = true;
+      icons = "auto";
       # enableAliases = true; # we need to remove some aliases created in zsh
       # enableFishIntegration = true;
       # enableNushellIntegration = true;
@@ -108,6 +108,17 @@ in {
           set result (wget -qO- ifconfig.me)
           echo $result | xclip -selection clipboard
           echo $result
+        ";
+        notes = "
+              set -l SUBJECT (string replace -r '^$' 'daily' $argv[1])
+    if test -z \"$SUBJECT\"
+        cd ~/Documents/notes
+        hx gdt/inbox.md
+    else
+        cd ~/Documents/notes
+        hx (string upper $SUBJECT).md gdt/inbox.md
+    end
+
         ";
         ggbranch = "
           echo (read)|read branch
