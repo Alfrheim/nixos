@@ -113,10 +113,10 @@ in {
               set -l SUBJECT (string replace -r '^$' 'daily' $argv[1])
     if test -z \"$SUBJECT\"
         cd ~/Documents/notes
-        hx gdt/inbox.md
+        hx gtd/inbox.md
     else
         cd ~/Documents/notes
-        hx (string upper $SUBJECT).md gdt/inbox.md
+        hx (string upper $SUBJECT).md gtd/inbox.md
     end
 
         ";
