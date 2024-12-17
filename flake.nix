@@ -12,7 +12,7 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    helix.url = "github:helix-editor/helix";
+    helix.url = "github:helix-editor/helix/master";
     wezterm = {
       url = "github:wez/wezterm?dir=nix";
     };

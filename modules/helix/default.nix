@@ -52,6 +52,10 @@ in {
         yaml-language-server
         zig
         zls
+        fish-lsp
+        clojure-lsp
+        hyprls
+        postgres-lsp
       ]
       ++ (with pkgs.nodePackages; [
         bash-language-server
@@ -185,15 +189,24 @@ in {
           C-A-up = ["extend_to_line_bounds" "delete_selection" "move_line_up" "paste_before"];
           C-g = [":new" ":insert-output lazygit" ":buffer-close!" ":redraw"];
           space = {
-            s = ":w";
-            m = ":format";
+            # s = ":w";
+            f = ":format";
             q = ":q!";
             space = "file_picker";
             n = ":new";
+            m = {
+              d = "@xs\\[ \\]<ret>c[x]<esc><ret>";
+              u = "@xs\\[x\\]<ret>c[ ]<esc><ret>";
+              n = "@i- [ ] _personal_ ChangeMe";
+              # c = ["extend_to_line_bounds" "select_regex" "\[ \]" "replace" "\[x\]"];
+              t = ":pipe LC_TIME=en_US.UTF-8 date +\"%a %b %d\"";
+            };
           };
 
           "'" = {
             m = ":pipe snippet-cli";
+            d = ":sh just deploy";
+            b = ":sh just build";
             t = ":sh just tests";
             r = ":sh just run";
             j = ":sh just --init";
