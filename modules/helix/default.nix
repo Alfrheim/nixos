@@ -16,6 +16,7 @@ in {
     home.packages = with pkgs;
       [
         # lsp-ai
+        scls
         android-file-transfer
         black
         broot
@@ -105,6 +106,16 @@ in {
               command = "prettier";
               args = ["--parser" "markdown"];
             };
+            roots = ["."];
+            language-servers = ["scls" "marksman" "markdown-oxide"];
+          }
+          {
+            name = "rust";
+            language-servers = ["scls" "rust-analyzer"];
+          }
+          {
+            name = "java";
+            language-servers = ["scls" "jdtls"];
           }
           # {
           #   name = "scheme";
@@ -123,6 +134,23 @@ in {
         language-server.jdtls = {
           command = "jdtls";
           args = ["--jvm-arg=-javaagent:/home/alfrheim/Programs/lombok.jar"];
+        };
+        language-server.scls = {
+          command = "simple-completion-language-server";
+          config = {
+            max_completion_items = 20; # set max completion results len for each group: words, snippets, unicode-input
+            snippets_first = true; # completions will return before snippets by default
+            snippets_inline_by_word_tail = false; # suggest snippets by WORD tail, for example text `xsq|` become `x^2|` when snippet `sq` has body `^2`
+            feature_words = true; # enable completion by word
+            feature_snippets = true; # enable snippets
+            feature_unicode_input = true; # enable "unicode input"
+            feature_paths = true; # enable path completion
+            feature_citations = false; # enable citation completion (only on `citation` feature enabled)
+          };
+          environment = {
+            RUST_LOG = "info,simple-completion-language-server=info";
+            LOG_FILE = "/tmp/completion.log";
+          };
         };
         # language-server.scheme-language-server = {
         # command = "${typescript-language-server}/bin/typescript-language-server";

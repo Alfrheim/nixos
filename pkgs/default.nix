@@ -4,5 +4,6 @@
   inherit (pkgs) lib;
 in rec {
   atac = pkgs.callPackage ./atac {};
+  scls = pkgs.callPackage ./scls {};
   # kftray = pkgs.callPackage ./kftray {};
 }
