@@ -81,6 +81,48 @@
           }
         ];
       };
+      silverAlf = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./configuration.nix
+          {
+            nix = {
+              settings.experimental-features = ["nix-command" "flakes"];
+            };
+          }
+          {
+            nixpkgs.config.permittedInsecurePackages = [
+              "electron-25.9.0"
+              "electron-27.3.11"
+            ];
+            # nixpkgs.config.packageOverrides = pkgs: {
+            # soapui = pkgs.callPackage ./derivations/soapui.nix {};
+            # };
+          }
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.alfrheim = import ./user.nix;
+              backupFileExtension = "backup";
+              extraSpecialArgs = {
+                inherit inputs outputs;
+                helix-flake = inputs.helix;
+                pkgsUnstable = import inputs.pkgsUnstable {
+                  config.allowUnfree = true;
+                };
+                pkgsIdea = import inputs.nixpkgs-idea2022-2-5 {
+                  config.allowUnfree = true;
+                };
+              };
+            };
+            nixpkgs.overlays = [
+              outputs.overlays.additions
+            ];
+          }
+        ];
+      };
     };
   };
 }
