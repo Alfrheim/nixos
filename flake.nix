@@ -18,6 +18,7 @@
     };
 
     nixpkgs-idea2022-2-5.url = "github:nixos/nixpkgs/1ed91531b68f820ba026e3cb8fd1e6ed40d64ee1";
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
   outputs = inputs @ {
@@ -67,6 +68,7 @@
               extraSpecialArgs = {
                 inherit inputs outputs;
                 helix-flake = inputs.helix;
+                zen-browser-flake = inputs.zen-browser.packages.x86_64-linux.default;
                 pkgsUnstable = import inputs.pkgsUnstable {
                   config.allowUnfree = true;
                 };

@@ -4,6 +4,7 @@
   config,
   inputs,
   pkgsIdea,
+  zen-browser-flake,
   pkgsUnstable,
   ...
 }:
@@ -87,6 +88,7 @@ in {
       # catppuccin-cursors.latteBlue
       pkgsUnstable.atac #we use unstable instead of our package. We keep ours in case they stop updating
       # kftray
+      zen-browser-flake
       pkgsUnstable.zed-editor
       file-roller
       figlet # terminal banners
