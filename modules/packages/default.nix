@@ -84,10 +84,12 @@ in {
     home.packages = with pkgs; [
       # packages.kftray
       # rofi
-      yai
+      # yai #TUI for AI, need token
       # catppuccin-cursors.latteBlue
+      ytermusic #youtube music TUI
       pkgsUnstable.atac #we use unstable instead of our package. We keep ours in case they stop updating
       # kftray
+      pkgsUnstable.warp-terminal
       zen-browser-flake
       pkgsUnstable.zed-editor
       file-roller
@@ -154,6 +156,7 @@ in {
       kubectl
       kubectx
       pkgsUnstable.lens
+      k9s
       awscli2
       postgresql_15 # we need in order to make a copy of the db to the local one. Maybe we can put that into the shell file
       powershell

@@ -192,7 +192,10 @@ in {
           };
 
           file-picker.hidden = false;
-
+          end-of-line-diagnostics = "hint";
+          inline-diagnostics = {
+            cursor-line = "warning";
+          };
           statusline = {
             left = ["mode" "spinner"];
             center = ["file-name"];
