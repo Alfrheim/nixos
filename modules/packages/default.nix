@@ -86,7 +86,6 @@ in {
       # rofi
       # yai #TUI for AI, need token
       # catppuccin-cursors.latteBlue
-      ytermusic #youtube music TUI
       pkgsUnstable.atac #we use unstable instead of our package. We keep ours in case they stop updating
       # kftray
       pkgsUnstable.warp-terminal
@@ -109,8 +108,8 @@ in {
       geoclue2 #redshift dependency
       blueman
       # spotify
+      # ncspot
       pkgsUnstable.youtube-music # so far the audio is not working, seems similar to the problem with microsoft edge
-      ncspot
       pkgsUnstable.flameshot
       distrobox #pods of distros to run apps
       exercism
@@ -122,7 +121,6 @@ in {
 
       gnumake
 
-      bashmount # to mount easy
       nnn
 
       pkgsUnstable.obsidian
@@ -156,7 +154,13 @@ in {
       kubectl
       kubectx
       pkgsUnstable.lens
-      k9s
+
+      # TUI tools
+      k9s # lens alternative
+      xh # httpie / curl alternative
+      bashmount # to mount easy
+      ytermusic #youtube music TUI
+
       awscli2
       postgresql_15 # we need in order to make a copy of the db to the local one. Maybe we can put that into the shell file
       powershell
