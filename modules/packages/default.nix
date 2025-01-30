@@ -87,8 +87,9 @@ in {
       # yai #TUI for AI, need token
       # catppuccin-cursors.latteBlue
       pkgsUnstable.atac #we use unstable instead of our package. We keep ours in case they stop updating
+      ollama
       # kftray
-      pkgsUnstable.warp-terminal
+      # pkgsUnstable.warp-terminal
       zen-browser-flake
       pkgsUnstable.zed-editor
       file-roller
@@ -160,6 +161,13 @@ in {
       xh # httpie / curl alternative
       bashmount # to mount easy
       ytermusic #youtube music TUI
+      yazi # file manager
+      slumber # httpclient
+      serie # git log --graph but prettier
+      gobang # sql IDE
+      jwt-cli # jwt decoder
+      pkgsUnstable.jwtinfo
+      logss
 
       awscli2
       postgresql_15 # we need in order to make a copy of the db to the local one. Maybe we can put that into the shell file

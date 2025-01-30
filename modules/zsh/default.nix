@@ -100,6 +100,9 @@ in {
         }
       ];
       functions = {
+        jwtdecode = "
+          wl-paste | jwt decode - --json | jq -C | bat
+        ";
         nixify = "
           nix flake init --template github:alfrheim/nix-templates#$argv;
         ";

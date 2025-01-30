@@ -5,5 +5,6 @@
 in rec {
   atac = pkgs.callPackage ./atac {};
   scls = pkgs.callPackage ./scls {};
+  logss = pkgs.callPackage ./logss {};
   # kftray = pkgs.callPackage ./kftray {};
 }
