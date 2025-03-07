@@ -18,22 +18,22 @@ with import <nixpkgs>
   };
 in
   rustPlatform.buildRustPackage rec {
-    pname = "simple-completion-language-server";
-    version = "0.1.0";
+    pname = "Logss";
+    version = "0.0.3";
     src = fetchFromGitHub {
-      owner = "estin";
-      repo = "simple-completion-language-server";
-      rev = "main";
-      sha256 = "sha256-dJSz1GlMi8DQNWt6N+EnDaH+RrhgFzdvx0IeW9OUBbw=";
+      owner = "achristmascarl";
+      repo = "rainfrog";
+      rev = "eac01a4c4581ab6104e1f94f8b442a96ed1fb3be";
+      sha256 = "sha256-5DMAfv1rpsA6LkNP3xqAERi2oXUwySIJJ7lTQGNQASM=";
     };
 
-    cargoHash = "sha256-J8Hcjc4KB92eh4TECiJMHHgGiQKvwezM32Bzn3Gv+S0=";
+    cargoHash = "sha256-ISJ32cgCKzC4EtbEAAnl3EXaz9qXG5HfqEuVHBFM2Gk=";
     doCheck = false;
 
     meta = with lib; {
       description = "A simple completion language server";
-      homepage = "https://github.com/estin/simple-completion-language-server";
+      homepage = "https://github.com/achristmascarl/rainfrog/";
       license = licenses.mit;
-      mainProgram = "simple-completion-language-server";
+      mainProgram = "rainfrog";
     };
   }

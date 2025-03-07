@@ -114,6 +114,14 @@ in {
             language-servers = ["scls" "rust-analyzer"];
           }
           {
+            name = "clojure";
+            formatter = {
+              command = "clojure-lsp";
+              args = ["format"];
+            };
+            language-servers = ["scls" "clojure-lsp"];
+          }
+          {
             name = "java";
             language-servers = ["scls" "jdtls"];
           }
@@ -219,6 +227,9 @@ in {
           C-A-down = ["extend_to_line_bounds" "delete_selection" "paste_after"];
           C-A-up = ["extend_to_line_bounds" "delete_selection" "move_line_up" "paste_before"];
           C-g = [":new" ":insert-output lazygit" ":buffer-close!" ":redraw"];
+          ret = ["goto_word"];
+          x = ["extend_line_below"];
+          X = ["extend_line_above"];
           space = {
             # s = ":w";
             f = ":format";

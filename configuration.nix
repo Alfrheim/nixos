@@ -60,6 +60,8 @@ in {
   services.xserver.desktopManager.xterm.enable = false;
   # services.gnome.gnome-keyring.enable = true;
 
+  services.guix.enable = true;
+
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
@@ -156,7 +158,7 @@ in {
     isNormalUser = true;
     description = "Alfrheim";
     shell = pkgs.zsh;
-    extraGroups = ["networkmanager" "wheel" "plugdev" "input" "docker" "video"];
+    extraGroups = ["networkmanager" "wheel" "plugdev" "input" "docker" "video" "guixbuild"];
     packages = with pkgs; [
       firefox
       swww

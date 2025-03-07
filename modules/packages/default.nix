@@ -167,7 +167,8 @@ in {
       gobang # sql IDE
       jwt-cli # jwt decoder
       pkgsUnstable.jwtinfo
-      logss
+      logss #logs viewer
+      rainfrog # datagrip tui
 
       awscli2
       postgresql_15 # we need in order to make a copy of the db to the local one. Maybe we can put that into the shell file

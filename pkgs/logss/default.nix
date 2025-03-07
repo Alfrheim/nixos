@@ -32,8 +32,8 @@ in
 
     meta = with lib; {
       description = "A simple completion language server";
-      homepage = "https://github.com/estin/simple-completion-language-server";
+      homepage = "https://github.com/todoesverso/logss";
       license = licenses.mit;
-      mainProgram = "simple-completion-language-server";
+      mainProgram = "logss";
     };
   }
