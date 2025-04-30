@@ -21,7 +21,7 @@
     helix.enable = true;
 
     # cli
-    nvim.enable = true;
+    nvim.enable = false;
     emacs.enable = true;
     zsh.enable = true;
     nushell.enable = true;

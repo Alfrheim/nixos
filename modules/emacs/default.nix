@@ -11,9 +11,24 @@ in {
   config = mkIf cfg.enable {
     programs.emacs = {
       enable = true;
+      # extraPackages = epkgs: [epkgs.magit];
     };
     home.packages = with pkgs; [
-      (nerdfonts.override {fonts = ["SourceCodePro"];})
+      python311Packages.pytest
+      libtool
+      cmake
+      cargo
+      rustc
+      nixfmt
+      pipenv
+      shellcheck
+      isort
+      fd
+      clj-kondo
+      clojure-lsp
+      cljfmt
+      neil
+      (nerdfonts.override {fonts = ["SourceCodePro" "NerdFontsSymbolsOnly"];})
     ];
   };
 }

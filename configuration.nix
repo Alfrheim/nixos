@@ -22,6 +22,10 @@ in {
   # we deactivate ipv6 for nordvpn
   networking.enableIPv6 = false;
   boot.kernel.sysctl."net.ipv6.conf.tun0.disable_ipv6" = true;
+    programs.evolution = {
+      enable = true;
+      plugins = [pkgs.evolution-ews];
+    };
 
   programs.zsh.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -60,7 +64,7 @@ in {
   services.xserver.desktopManager.xterm.enable = false;
   # services.gnome.gnome-keyring.enable = true;
 
-  services.guix.enable = true;
+  services.guix.enable = false;
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -158,7 +162,7 @@ in {
     isNormalUser = true;
     description = "Alfrheim";
     shell = pkgs.zsh;
-    extraGroups = ["networkmanager" "wheel" "plugdev" "input" "docker" "video" "guixbuild"];
+    extraGroups = ["networkmanager" "wheel" "plugdev" "input" "docker" "video"];
     packages = with pkgs; [
       firefox
       swww

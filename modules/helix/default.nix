@@ -57,6 +57,7 @@ in {
         clojure-lsp
         hyprls
         postgres-lsp
+        semgrep
       ]
       ++ (with pkgs.nodePackages; [
         bash-language-server

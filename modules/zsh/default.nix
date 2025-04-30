@@ -81,6 +81,7 @@ in {
         awseksdev = "aws eks describe-cluster --name EksTicketDevV1| jq '.cluster.resourcesVpcConfig.publicAccessCidrs' | egrep --color -A 2 -B 2  (wget -qO- ifconfig.me)";
         awsekspre = "aws eks describe-cluster --name EksGlobickCorev1 | jq '.cluster.resourcesVpcConfig.publicAccessCidrs' | egrep --color -A 2 -B 2  (wget -qO- ifconfig.me)";
         awsekspro = "aws eks describe-cluster --name EksGlobickCorev1PROD | jq '.cluster.resourcesVpcConfig.publicAccessCidrs' | egrep --color -A 2 -B 2  (wget -qO- ifconfig.me)";
+        e = "emacs -nw";
         copy = "xclip -sel c < ";
         # template = "nix flake init --template 'github:alfrheim/nix-templates#$argv'";
       };

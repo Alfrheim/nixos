@@ -109,7 +109,7 @@
   # Set up user and enable sudo
   users.users.alfrheim = {
     isNormalUser = true;
-    extraGroups = ["input" "wheel" "docker" "plugdev" "video" "networkmanager" "guixbuild"];
+    extraGroups = ["input" "wheel" "docker" "plugdev" "video" "networkmanager"];
     shell = pkgs.zsh;
   };
 

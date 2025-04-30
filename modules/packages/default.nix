@@ -82,6 +82,7 @@ in {
       "sha256-BvVE9qupMjw7JRqFUj1J0a4ys6kc9fOLBPx2bGaapTk="
       "Fuchsia-Pop";
     home.packages = with pkgs; [
+      # emacs
       # packages.kftray
       # rofi
       # yai #TUI for AI, need token
@@ -222,6 +223,14 @@ in {
       bandw
       maintenance
       # wf-recorder
+
+
+      # CLOJURE
+      boot
+      clojure
+      leiningen
+      babashka
+      # graalvm-ce
 
       #thunar
       xfce.exo # thunar "open terminal here"

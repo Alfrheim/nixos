@@ -19,6 +19,8 @@ update:
 
 clean:
      sudo nix-collect-garbage -d
+     # remove home-manager builds
+     nix-collect-garbage -d
      sudo nix-store --optimise
      notify-send "nix clean done!"
 
