@@ -88,7 +88,7 @@
                       owner = "clojure-lsp";
                       repo = "clojure-lsp";
                       rev = "master";
-                      hash = "sha256-wEwTFLTUY/TDkD2sHSG+eSxKvE5iVyVr10O643ws1xg=";
+                      hash = "sha256-EBcU4kkUDJCf3HFGkxOuwI3peNH6aL4J1ji1Wt0bzOM=";
                     };
                   });
                 }
