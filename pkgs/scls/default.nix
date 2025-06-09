@@ -24,10 +24,10 @@ in
       owner = "estin";
       repo = "simple-completion-language-server";
       rev = "main";
-      sha256 = "sha256-dJSz1GlMi8DQNWt6N+EnDaH+RrhgFzdvx0IeW9OUBbw=";
+      sha256 = "sha256-jb4VEHJCCqYVS4llXJoyZpAy9OdwVD8isChhYe0Jr4I=";
     };
 
-    cargoHash = "sha256-J8Hcjc4KB92eh4TECiJMHHgGiQKvwezM32Bzn3Gv+S0=";
+    cargoHash = "sha256-Ki0w+1nGIXGpMNko5aZ0BegWtsBwjo2ef4bDXw/vz0g=";
     doCheck = false;
 
     meta = with lib; {

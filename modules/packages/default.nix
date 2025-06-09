@@ -88,7 +88,7 @@ in {
       # yai #TUI for AI, need token
       # catppuccin-cursors.latteBlue
       pkgsUnstable.atac #we use unstable instead of our package. We keep ours in case they stop updating
-      ollama
+      pkgsUnstable.ollama
       # kftray
       # pkgsUnstable.warp-terminal
       zen-browser-flake
@@ -223,7 +223,6 @@ in {
       bandw
       maintenance
       # wf-recorder
-
 
       # CLOJURE
       boot
