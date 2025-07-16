@@ -125,6 +125,8 @@ in {
 
       nnn
 
+      # podman
+
       pkgsUnstable.obsidian
       pkgsUnstable.logseq
       albert
@@ -145,8 +147,7 @@ in {
       pkgsUnstable.tdesktop
       pkgsUnstable.signal-desktop
       pkgsUnstable.discord
-      skypeforlinux
-      pkgsUnstable.microsoft-edge #sound not working, can't find alsa, need to install throught .deb meanwhile
+      #pkgsUnstable.microsoft-edge #sound not working, can't find alsa, need to install throught .deb meanwhile
 
       jdk21
       pkgsUnstable.soapui
