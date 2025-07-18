@@ -111,6 +111,8 @@ in {
       blueman
       # spotify
       # ncspot
+      kando
+      gnomeExtensions.kando-integration
       pkgsUnstable.youtube-music # so far the audio is not working, seems similar to the problem with microsoft edge
       pkgsUnstable.flameshot
       distrobox #pods of distros to run apps

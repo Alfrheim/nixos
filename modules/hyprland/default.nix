@@ -26,6 +26,7 @@ in {
           "nm-applet --indicator"
           "dunst"
           "lxqt.lxqt-policykit"
+          "kando"
         ];
 
         env = [
@@ -226,6 +227,13 @@ in {
         windowrulev2 = float,class:^(polkit-gnome-authentication-agent-1)$
 
         # windowrulev2 = workspace 9,class:^(Enpass)$
+        windowrule = noblur, class:kando
+        windowrule = opaque, class:kando
+        windowrule = size 100% 100%, class:kando
+        windowrule = noborder, class:kando
+        windowrule = noanim, class:kando
+        windowrule = float, class:kando
+        windowrule = pin, class:kando
 
 
 
@@ -245,6 +253,8 @@ in {
         bind= $mainMod, D, exec, launcher window & sleep 0.2; hyprctl dispatch focuswindow "^(Rofi)"
         bind= $mainMod, B, exec, launcher drun & sleep 0.2; hyprctl dispatch focuswindow "^(Rofi)"
         bind = $mainMod SHIFT, J, exec, grim -g "$(slurp -d)" - | wl-copy
+
+        bind = $mainMod, mouse:274, global, kando:alfrheim-menu
 
 
         # Move focus with mainMod + arrow keys
