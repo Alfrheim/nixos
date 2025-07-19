@@ -57,6 +57,9 @@
             # nixpkgs.config.packageOverrides = pkgs: {
             # soapui = pkgs.callPackage ./derivations/soapui.nix {};
             # };
+            nixpkgs.config.packageOverrides = pkgs: {
+              roam = pkgs.callPackage ./derivations/roam.nix {};
+            };
           }
           home-manager.nixosModules.home-manager
           {

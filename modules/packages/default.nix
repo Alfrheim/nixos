@@ -153,6 +153,7 @@ in {
 
       jdk21
       pkgsUnstable.soapui
+      roam
       # datagrip
       pkgsIdea.jetbrains.datagrip
       xclip # for copy to clipboard
