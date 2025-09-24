@@ -22,10 +22,10 @@ in {
   # we deactivate ipv6 for nordvpn
   networking.enableIPv6 = false;
   boot.kernel.sysctl."net.ipv6.conf.tun0.disable_ipv6" = true;
-    programs.evolution = {
-      enable = true;
-      plugins = [pkgs.evolution-ews];
-    };
+  programs.evolution = {
+    enable = true;
+    plugins = [pkgs.evolution-ews];
+  };
 
   programs.zsh.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -83,6 +83,7 @@ in {
   services.xserver.windowManager.leftwm.enable = true;
 
   xdg.portal.enable = true;
+  xdg.portal.wlr.enable = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   # xdg.portal.config.common.default = "*";
   # services.xserver.displayManager.defaultSession = "none+leftwm";

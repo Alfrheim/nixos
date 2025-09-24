@@ -25,10 +25,14 @@ in {
         gopls
         haskell-language-server
         jdt-language-server
-        jq
         kotlin-language-server
+
+        lazydocker
         lazygit
+        jq
+        pkgsUnstable.posting
         lf # terminal filemanager
+
         lldb_18
         lua
         pkgsUnstable.markdown-oxide

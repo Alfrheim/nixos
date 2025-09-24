@@ -28,7 +28,7 @@
     name = "roam-unpacked";
     src = fetchurl {
       url = "https://download.ro.am/Roam/8a86d88cfc9da3551063102e9a4e2a83/latest/linux/x64/Roam.deb";
-      sha256 = "sha256-HCGm5kyuDMWzTcYoqTynzZ3VU6DtDp4YNjvGVOanMVc=";
+      sha256 = "sha256-pIQ/LA/BtoZ2jDQ2cC590kxzKujdb9xddv+bjmPCYpo=";
     };
 
     nativeBuildInputs = [dpkg];
