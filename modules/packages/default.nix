@@ -119,6 +119,7 @@ in {
       exercism
 
       just
+      slack
 
       # wally-cli #for ergodox keyboard firmware
       pywal

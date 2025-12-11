@@ -30,6 +30,7 @@ in {
         lazydocker
         lazygit
         jq
+        fx # json terminal viewer
         pkgsUnstable.posting
         lf # terminal filemanager
 
@@ -42,7 +43,7 @@ in {
         omnisharp-roslyn
         pkgsUnstable.alejandra
         pkgsUnstable.nil
-        projectable #terminal file manager for projects
+        projectable #prj terminal file manager for projects
         pyright
         #python-lsp-server
         # rnix-lsp
