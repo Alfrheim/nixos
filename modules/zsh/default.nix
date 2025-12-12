@@ -81,7 +81,6 @@ in {
         awseksdev = "aws eks describe-cluster --name EksTicketDevV1| jq '.cluster.resourcesVpcConfig.publicAccessCidrs' | egrep --color -A 2 -B 2  (wget -qO- ifconfig.me)";
         awsekspre = "aws eks describe-cluster --name EksGlobickCorev1 | jq '.cluster.resourcesVpcConfig.publicAccessCidrs' | egrep --color -A 2 -B 2  (wget -qO- ifconfig.me)";
         awsekspro = "aws eks describe-cluster --name EksGlobickCorev1PROD | jq '.cluster.resourcesVpcConfig.publicAccessCidrs' | egrep --color -A 2 -B 2  (wget -qO- ifconfig.me)";
-        e = "emacs -nw";
         copy = "xclip -sel c < ";
         # template = "nix flake init --template 'github:alfrheim/nix-templates#$argv'";
       };
@@ -183,7 +182,7 @@ in {
         #gitCleanBranches = "git branch | grep -v \"master\" | xargs git branch -D"; #better to keep this one like this now, cleans al branches local and remote
         clearCaches = "sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'";
       };
-      initExtraFirst = ''
+      initContent = lib.mkBefore ''
         nixify() {
         if [ ! -e ./.envrc ]; then
         echo "use nix" > .envrc
@@ -210,16 +209,6 @@ in {
         fi
         ${EDITOR:-vim} flake.nix
         }
-      '';
-
-      oh-my-zsh = {
-        # Extra plugins for zsh
-        enable = true;
-        plugins = ["git" "aliases" "rust"];
-        theme = "norm";
-      };
-
-      initExtra = ''
         # Spaceship
         #source ${pkgs.spaceship-prompt}/share/zsh/site-functions/prompt_spaceship_setup
         eval "$(zoxide init zsh)"
@@ -228,7 +217,14 @@ in {
         # neofetch
         fastfetch
         fish
-      ''; # Zsh theme
+      '';
+
+      oh-my-zsh = {
+        # Extra plugins for zsh
+        enable = true;
+        plugins = ["git" "aliases" "rust"];
+        theme = "norm";
+      };
     };
 
     programs.fzf = rec {

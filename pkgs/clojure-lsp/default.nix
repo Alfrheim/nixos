@@ -7,7 +7,6 @@
   testers,
   clojure-lsp,
 }:
-
 buildGraalvmNativeImage rec {
   pname = "clojure-lsp";
   version = "2024.11.08-17.49.29";
@@ -77,8 +76,9 @@ buildGraalvmNativeImage rec {
     description = "Language Server Protocol (LSP) for Clojure";
     homepage = "https://github.com/clojure-lsp/clojure-lsp";
     changelog = "https://github.com/clojure-lsp/clojure-lsp/releases/tag/${version}";
-    sourceProvenance = [ lib.sourceTypes.binaryBytecode ];
+    sourceProvenance = [lib.sourceTypes.binaryBytecode];
     license = lib.licenses.mit;
-    maintainers = [ lib.maintainers.ericdallo ];
+    maintainers = [lib.maintainers.ericdallo];
+    mainProgram = "clojure-lsp";
   };
 }

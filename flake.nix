@@ -6,10 +6,10 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     pkgsUnstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     helix.url = "github:helix-editor/helix/master";
@@ -83,19 +83,6 @@
             nixpkgs.overlays = [
               outputs.overlays.additions
               outputs.overlays.modifications
-              (
-                final: prev: {
-                  clojure-lsp = prev.clojure-lsp.overrideAttrs (oldAttrs: {
-                    version = "master";
-                    src = prev.fetchFromGitHub {
-                      owner = "clojure-lsp";
-                      repo = "clojure-lsp";
-                      rev = "master";
-                      hash = "sha256-UHn+F0Ud9RdzHb2BwWHFxoH2x4r5W5BiWQEBP4C0YhE=";
-                    };
-                  });
-                }
-              )
             ];
           }
         ];

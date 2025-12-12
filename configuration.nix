@@ -99,8 +99,7 @@ in {
   services.displayManager.autoLogin.user = "alfrheim";
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = false;
-  # services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = false;
 
   services.udev.extraRules = ''
       # Rules for Oryx web flashing and live training
@@ -139,7 +138,7 @@ in {
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -198,7 +197,12 @@ in {
       jetbrains-mono
       roboto
       openmoji-color
-      (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode" "Iosevka" "FiraMono"];})
+      nerd-fonts.iosevka
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.symbols-only
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono
+      nerd-fonts.symbols-only
     ];
 
     fontconfig = {

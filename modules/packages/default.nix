@@ -82,7 +82,6 @@ in {
       "sha256-BvVE9qupMjw7JRqFUj1J0a4ys6kc9fOLBPx2bGaapTk="
       "Fuchsia-Pop";
     home.packages = with pkgs; [
-      # emacs
       # packages.kftray
       # rofi
       # yai #TUI for AI, need token
@@ -147,7 +146,7 @@ in {
       xorg.xkill
       xorg.xbacklight
 
-      pkgsUnstable.tdesktop
+      pkgsUnstable.telegram-desktop
       pkgsUnstable.signal-desktop
       pkgsUnstable.discord
       #pkgsUnstable.microsoft-edge #sound not working, can't find alsa, need to install throught .deb meanwhile

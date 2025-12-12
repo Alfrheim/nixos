@@ -1,6 +1,7 @@
 {
+  lib,
   stdenv,
-  buildFHSUserEnv,
+  buildFHSEnv,
   dpkg,
   fetchurl,
   glib,
@@ -61,7 +62,7 @@
     # '';
   };
 in
-  buildFHSUserEnv {
+  buildFHSEnv {
     name = "roam";
 
     targetPkgs = pkgs:
@@ -91,7 +92,6 @@ in
         systemd
         libGL
         mesa
-        mesa.drivers
         libglvnd
         wayland
         xorg.libxshmfence
@@ -126,6 +126,13 @@ in
         --enable-features=WebRTCPipeWireCapturer,UseOzonePlatform \
         --use-gl=egl
         ";
+
+    meta = with lib; {
+      description = "Virtual office platform";
+      homepage = "https://ro.am";
+      license = licenses.mit;
+      mainProgram = "roam";
+    };
 
     # runScript = "
     #   export XDG_SESSION_TYPE=wayland

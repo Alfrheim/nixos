@@ -21,7 +21,8 @@ in {
       # rofi
       pamixer
       brightnessctl
-      (nerdfonts.override {fonts = ["JetBrainsMono" "IosevkaTerm"];})
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka-term
     ];
 
     home.file.".config/polybar/forest/" = {
