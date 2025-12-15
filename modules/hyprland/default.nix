@@ -138,10 +138,10 @@ in {
           # orientation = "center";
         };
 
-        gestures = {
-          # See https://wiki.hyprland.org/Configuring/Variables/ for more
-          workspace_swipe = false;
-        };
+        # gestures = {
+        # See https://wiki.hyprland.org/Configuring/Variables/ for more
+        # workspce_swipe = "true";
+        # };
       };
 
       extraConfig = ''

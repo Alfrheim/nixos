@@ -27,7 +27,7 @@ in
       sha256 = "sha256-tSw2pf2F+2vrFxAr9O+klH1Ome2TT6xbUPc1OmSGMUU=";
     };
 
-    cargoHash = "sha256-PLWNdw5O6hqwoh2naxXJGKSFcTvCios38/0cE/1zEok=";
+    cargoHash = "sha256-AjQcKNkbbxnAlbLA+Xj3FC3oi/7kXvSJOKpoUCeQkqM=";
     doCheck = false;
 
     meta = with lib; {

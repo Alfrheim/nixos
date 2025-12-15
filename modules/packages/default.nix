@@ -147,7 +147,7 @@ in {
       xorg.xkill
       xorg.xbacklight
 
-      pkgsUnstable.tdesktop
+      pkgsUnstable.telegram-desktop
       pkgsUnstable.signal-desktop
       pkgsUnstable.discord
       #pkgsUnstable.microsoft-edge #sound not working, can't find alsa, need to install throught .deb meanwhile
