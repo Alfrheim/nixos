@@ -13,8 +13,8 @@ with import <nixpkgs>
   ];
 }; let
   rustPlatform = makeRustPlatform {
-    cargo = rust-bin.stable."1.81.0".default;
-    rustc = rust-bin.stable."1.81.0".default;
+    cargo = rust-bin.stable."1.92.0".default;
+    rustc = rust-bin.stable."1.92.0".default;
   };
 in
   rustPlatform.buildRustPackage rec {
@@ -24,10 +24,10 @@ in
       owner = "estin";
       repo = "simple-completion-language-server";
       rev = "main";
-      sha256 = "sha256-6BrueVoyNuAXZvv1MmawDrBB9QYOaqyyo99bJxTYvFs=";
+      sha256 = "sha256-tSw2pf2F+2vrFxAr9O+klH1Ome2TT6xbUPc1OmSGMUU=";
     };
 
-    cargoHash = "sha256-+VDyxa8GSZY+4pNFXKRNiOJGRbEXuhC4vukQY3cUxlw=";
+    cargoHash = "sha256-AjQcKNkbbxnAlbLA+Xj3FC3oi/7kXvSJOKpoUCeQkqM=";
     doCheck = false;
 
     meta = with lib; {

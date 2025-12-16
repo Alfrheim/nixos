@@ -19,7 +19,7 @@ with import <nixpkgs>
 in
   rustPlatform.buildRustPackage rec {
     pname = "Logss";
-    version = "0.0.3";
+    version = "0.0.4";
     src = fetchFromGitHub {
       owner = "todoesverso";
       repo = "logss";
@@ -27,11 +27,11 @@ in
       sha256 = "sha256-b4yxePBe2SmMHXeI7PaipaixNlEPdZT480eSR+7RO04=";
     };
 
-    cargoHash = "sha256-uKntqF/a6VxbRoge7uck4+jqGO5XZq9O0X4i8EaeFUo=";
+    cargoHash = "sha256-1BiwKetP/VQVEo30lPnwq4536qAY1xyAwJdNCZDYku4=";
     doCheck = false;
 
     meta = with lib; {
-      description = "A simple completion language server";
+      description = "A TUI for logs";
       homepage = "https://github.com/todoesverso/logss";
       license = licenses.mit;
       mainProgram = "logss";

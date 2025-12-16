@@ -18,7 +18,7 @@ with import <nixpkgs>
   };
 in
   rustPlatform.buildRustPackage rec {
-    pname = "Logss";
+    pname = "Rainfrog";
     version = "0.0.3";
     src = fetchFromGitHub {
       owner = "achristmascarl";
@@ -27,11 +27,11 @@ in
       sha256 = "sha256-5DMAfv1rpsA6LkNP3xqAERi2oXUwySIJJ7lTQGNQASM=";
     };
 
-    cargoHash = "sha256-ISJ32cgCKzC4EtbEAAnl3EXaz9qXG5HfqEuVHBFM2Gk=";
+    cargoHash = "sha256-t9ebO7YQlbqZ93sqRaLtiIDOU9ihgImN7WTIdX3UjGQ=";
     doCheck = false;
 
     meta = with lib; {
-      description = "A simple completion language server";
+      description = "A TUI for databases";
       homepage = "https://github.com/achristmascarl/rainfrog/";
       license = licenses.mit;
       mainProgram = "rainfrog";
