@@ -19,7 +19,7 @@ in {
       cmake
       cargo
       rustc
-      nixfmt
+      nixfmt-classic
       pipenv
       shellcheck
       isort
