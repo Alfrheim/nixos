@@ -62,7 +62,8 @@ in {
   };
 
   services.xserver.desktopManager.xterm.enable = false;
-  # services.gnome.gnome-keyring.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
 
   services.guix.enable = false;
 
@@ -83,8 +84,8 @@ in {
   services.xserver.windowManager.leftwm.enable = true;
 
   xdg.portal.enable = true;
-  xdg.portal.wlr.enable = true;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  xdg.portal.wlr.enable = false;
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-hyprland];
   # xdg.portal.config.common.default = "*";
   # services.xserver.displayManager.defaultSession = "none+leftwm";
   programs.hyprland.enable = true;
@@ -99,8 +100,7 @@ in {
   services.displayManager.autoLogin.user = "alfrheim";
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = false;
-  # services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = false;
 
   services.udev.extraRules = ''
       # Rules for Oryx web flashing and live training
@@ -139,7 +139,7 @@ in {
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -198,7 +198,12 @@ in {
       jetbrains-mono
       roboto
       openmoji-color
-      (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode" "Iosevka" "FiraMono"];})
+      nerd-fonts.iosevka
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.symbols-only
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono
+      nerd-fonts.symbols-only
     ];
 
     fontconfig = {
@@ -214,6 +219,8 @@ in {
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    seahorse # too see the keyrings
+    libsecret # secret-tool command, similar to pass but is a cli for Secret Service
 
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects

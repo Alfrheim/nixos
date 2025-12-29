@@ -7,15 +7,15 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
-    clojure-lsp = prev.clojure-lsp.overrideAttrs (oldAttrs: {
-      version = "master";
-      src = prev.fetchFromGitHub {
-        owner = "clojure-lsp";
-        repo = "clojure-lsp";
-        rev = "master";
-        hash = "sha256-wEwTFLTUY/TDkD2sHSG+eSxKvE5iVyVr10O643ws1xg=";
-      };
-    });
+    # clojure-lsp = prev.clojure-lsp.overrideAttrs (oldAttrs: {
+    #   version = "master";
+    #   src = prev.fetchFromGitHub {
+    #     owner = "clojure-lsp";
+    #     repo = "clojure-lsp";
+    #     rev = "master";
+    #     hash = "sha256-wEwTFLTUY/TDkD2sHSG+eSxKvE5iVyVr10O643ws1xg=";
+    #   };
+    # });
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });

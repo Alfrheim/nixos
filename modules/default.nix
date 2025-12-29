@@ -9,7 +9,6 @@
     # gui
     ./firefox
     ./foot
-    ./eww
     ./dunst
     ./hyprland
     ./wofi
@@ -20,7 +19,6 @@
 
     # cli
     ./nvim
-    ./emacs
     ./zsh
     ./nushell
     ./git

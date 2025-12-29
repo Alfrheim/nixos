@@ -27,7 +27,10 @@ in
       sha256 = "sha256-5DMAfv1rpsA6LkNP3xqAERi2oXUwySIJJ7lTQGNQASM=";
     };
 
-    cargoHash = "sha256-t9ebO7YQlbqZ93sqRaLtiIDOU9ihgImN7WTIdX3UjGQ=";
+    cargoLock = {
+      lockFile = "${src}/Cargo.lock";
+    };
+    cargoHash = lib.fakeHash;
     doCheck = false;
 
     meta = with lib; {

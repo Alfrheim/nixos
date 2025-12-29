@@ -51,35 +51,33 @@ in {
         rustfmt
         shfmt
         stylua
-        sumneko-lua-language-server
-        taplo-cli
-        taplo-lsp
+        lua-language-server
+        taplo
         tree-sitter
         yaml-language-server
         zig
         zls
         fish-lsp
-        clojure-lsp
+        # clojure-lsp
         hyprls
-        postgres-lsp
+        postgres-language-server
         semgrep
+        glow # to see markdown in terminal
       ]
       ++ (with pkgs.nodePackages; [
         bash-language-server
-        dockerfile-language-server-nodejs
+        dockerfile-language-server
         markdownlint-cli2
         node2nix
         prettier
         typescript-language-server
         vscode-langservers-extracted
-        vscode-json-languageserver
-        vue-language-server
         yaml-language-server
       ]);
     programs.helix = {
       enable = true;
       defaultEditor = true;
-      package = helix-flake.packages.${pkgs.system}.default;
+      package = helix-flake.packages.${pkgs.stdenv.hostPlatform.system}.default;
       #package = pkgsUnstable.helix;
       extraPackages = [
         pkgs.marksman

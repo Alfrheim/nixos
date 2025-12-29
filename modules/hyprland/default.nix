@@ -10,7 +10,7 @@ with lib; let
 in {
   options.modules.hyprland = {enable = mkEnableOption "hyprland";};
   config = mkIf cfg.enable {
-    programs.hyprlock.enable = true;
+    # programs.hyprlock.enable = true;
     wayland.windowManager.hyprland = {
       #https://github.com/vimjoyer/nixconf/blob/8bdeb4a3119adda168e6fb489a5e380d8eed91de/homeManagerModules/features/hyprland/default.nix#L17
       enable = true;

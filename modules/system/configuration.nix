@@ -42,7 +42,12 @@
       jetbrains-mono
       roboto
       openmoji-color
-      (nerdfonts.override {fonts = ["JetBrainsMono" "FiraCode" "Iosevka" "FiraMono" "Symbols"];})
+      nerd-fonts.iosevka
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.symbols-only
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono
+      nerd-fonts.symbols-only
     ];
 
     fontconfig = {
@@ -143,7 +148,7 @@
     protectKernelImage = true;
   };
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   services.pipewire = {

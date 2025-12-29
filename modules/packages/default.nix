@@ -82,7 +82,6 @@ in {
       "sha256-BvVE9qupMjw7JRqFUj1J0a4ys6kc9fOLBPx2bGaapTk="
       "Fuchsia-Pop";
     home.packages = with pkgs; [
-      # emacs
       # packages.kftray
       # rofi
       # yai #TUI for AI, need token

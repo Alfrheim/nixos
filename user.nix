@@ -13,7 +13,6 @@
     # gui
     firefox.enable = false;
     foot.enable = false;
-    eww.enable = true;
     polybar.enable = true;
     dunst.enable = true;
     hyprland.enable = true;
@@ -22,7 +21,6 @@
 
     # cli
     nvim.enable = false;
-    emacs.enable = true;
     zsh.enable = true;
     nushell.enable = true;
     git.enable = true;
