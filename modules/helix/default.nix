@@ -62,6 +62,7 @@ in {
         hyprls
         postgres-language-server
         semgrep
+        glow # to see markdown in terminal
       ]
       ++ (with pkgs.nodePackages; [
         bash-language-server
