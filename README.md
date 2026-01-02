@@ -36,3 +36,13 @@ create two files in home
 /home/alfrheim/.globickemail -> email of the globick account to put in git
   
 ```
+
+# Create HomeLab certificate
+```sh
+    openssl req -x509 -newkey rsa:4096 -days 3650 -nodes \
+  -keyout homelab.key \
+  -out homelab.crt \
+  -subj "/CN=lan" \
+  -addext "subjectAltName=DNS:*.lan"
+
+```

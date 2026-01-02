@@ -65,6 +65,10 @@ in {
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
 
+  security.pki.certificates = [
+    (builtins.readFile ./certs/homelab.crt)
+  ];
+
   services.guix.enable = false;
 
   # Enable the X11 windowing system.
