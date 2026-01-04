@@ -66,7 +66,7 @@ in {
   security.pam.services.sddm.enableGnomeKeyring = true;
 
   security.pki.certificates = [
-    (builtins.readFile ./certs/homelab.crt)
+    (builtins.readFile ./certs/badianurkali-ca.crt)
   ];
 
   services.guix.enable = false;
@@ -218,9 +218,12 @@ in {
       };
     };
   };
+  nixpkgs.config.permittedInsecurePackages = ["ventoy-1.1.07"];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    ventoy-full
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     seahorse # too see the keyrings

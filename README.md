@@ -40,9 +40,9 @@ create two files in home
 # Create HomeLab certificate
 ```sh
     openssl req -x509 -newkey rsa:4096 -days 3650 -nodes \
-  -keyout homelab.key \
-  -out homelab.crt \
+  -keyout badianurkali.key \
+  -out badianurkali.crt \
   -subj "/CN=lan" \
-  -addext "subjectAltName=DNS:*.lan"
+  -addext "subjectAltName=DNS:*.badianurkali.net"
 
 ```
