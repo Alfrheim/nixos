@@ -117,6 +117,7 @@ in {
       distrobox #pods of distros to run apps
       exercism
 
+      zellij
       just
       slack
 
