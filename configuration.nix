@@ -61,6 +61,12 @@ in {
     LC_TIME = "ca_AD.UTF-8";
   };
 
+  fileSystems."/mnt/media" = {
+    device = "192.168.4.2:/srv/usbmedia";
+    fsType = "nfs";
+    options = ["rw" "vers=4"];
+  };
+
   services.xserver.desktopManager.xterm.enable = false;
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
