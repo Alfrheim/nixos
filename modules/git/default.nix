@@ -24,24 +24,23 @@ in {
         pull.rebase = true;
         rebase.autosquash = true;
         push.autoSetupRemote = true;
-      };
-
-      aliases = {
-        br = "branch --color -v";
-        cl = "clone";
-        cm = "commit -m";
-        ca = "commit --amend";
-        ammend = "commit --amend -C HEAD";
-        dc = "diff --cached";
-        ds = "diff --staged";
-        dh = "diff HEAD";
-        co = "checkout";
-        cob = "checkout -b";
-        st = "status";
-        rh = "reset HEAD --hard";
-        undo = "reset --soft HEAD^";
-        pl = "!git --no-pager log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 20";
-        graph = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold cyan)%h%C(reset) - %C(green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
+        aliases = {
+          br = "branch --color -v";
+          cl = "clone";
+          cm = "commit -m";
+          ca = "commit --amend";
+          ammend = "commit --amend -C HEAD";
+          dc = "diff --cached";
+          ds = "diff --staged";
+          dh = "diff HEAD";
+          co = "checkout";
+          cob = "checkout -b";
+          st = "status";
+          rh = "reset HEAD --hard";
+          undo = "reset --soft HEAD^";
+          pl = "!git --no-pager log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 20";
+          graph = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold cyan)%h%C(reset) - %C(green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
+        };
       };
 
       # https://github.com/NobbZ/nixos-config/blob/8848aa0cc4d65d7960ec2c8535e33d212e6691d2/home/modules/profiles/development/default.nix#L70-L76
