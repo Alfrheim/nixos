@@ -48,6 +48,8 @@
       nerd-fonts.fira-code
       nerd-fonts.fira-mono
       nerd-fonts.symbols-only
+      font-awesome
+      noto-fonts-emoji
     ];
 
     fontconfig = {

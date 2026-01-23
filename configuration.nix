@@ -75,6 +75,8 @@ in {
     (builtins.readFile ./certs/badianurkali-ca.crt)
   ];
 
+  services.flatpak.enable = true;
+
   services.guix.enable = false;
 
   # Enable the X11 windowing system.
@@ -214,6 +216,8 @@ in {
       nerd-fonts.fira-code
       nerd-fonts.fira-mono
       nerd-fonts.symbols-only
+      font-awesome
+      noto-fonts-color-emoji
     ];
 
     fontconfig = {

@@ -26,7 +26,7 @@ in {
          local config = {}
          if wezterm.config_builder then config = wezterm.config_builder() end
 
-         config.font = wezterm.font_with_fallback{"IosevkaTerm Nerd Font", "Fira Code", "JetBrains Mono"}
+         config.font = wezterm.font_with_fallback{ "IosevkaTerm Nerd Font", "Fira Code", "JetBrainsMono Nerd Font Mono", "JetBrains Mono"}
          -- https://wezfurlong.org/wezterm/config/font-shaping.html#advanced-font-shaping-options
          -- https://github.com/ryanoasis/nerd-fonts/tree/2.1.0/patched-fonts/Iosevka
          config.harfbuzz_features = { "calt=1", "clig=1", "liga=1", "zero", "ss01", "cv05", "type"}
