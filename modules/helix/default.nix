@@ -106,10 +106,15 @@ in {
           }
           {
             name = "markdown";
+            # soft-wrap = {
+            # enable = true;
+            # wrap-at-text-width = true;
+            # };
             formatter = {
               command = "prettier";
-              args = ["--parser" "markdown"];
+              args = ["--parser" "markdown" "--prose-wrap" "never"];
             };
+            auto-format = true;
             roots = ["."];
             language-servers = ["scls" "marksman" "markdown-oxide"];
           }
