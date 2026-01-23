@@ -6,20 +6,20 @@
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
-  modifications = final: prev: {
-    # clojure-lsp = prev.clojure-lsp.overrideAttrs (oldAttrs: {
-    #   version = "master";
-    #   src = prev.fetchFromGitHub {
-    #     owner = "clojure-lsp";
-    #     repo = "clojure-lsp";
-    #     rev = "master";
-    #     hash = "sha256-wEwTFLTUY/TDkD2sHSG+eSxKvE5iVyVr10O643ws1xg=";
-    #   };
-    # });
-    # example = prev.example.overrideAttrs (oldAttrs: rec {
-    # ...
-    # });
-  };
+  modifications = import ./lens-fixed.nix;
+
+  # clojure-lsp = prev.clojure-lsp.overrideAttrs (oldAttrs: {
+  #   version = "master";
+  #   src = prev.fetchFromGitHub {
+  #     owner = "clojure-lsp";
+  #     repo = "clojure-lsp";
+  #     rev = "master";
+  #     hash = "sha256-wEwTFLTUY/TDkD2sHSG+eSxKvE5iVyVr10O643ws1xg=";
+  #   };
+  # });
+  # example = prev.example.overrideAttrs (oldAttrs: rec {
+  # ...
+  # });
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
   # be accessible through 'pkgs.unstable'

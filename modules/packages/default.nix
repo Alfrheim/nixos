@@ -14,12 +14,12 @@ with lib; let
   bandw = pkgs.writeShellScriptBin "bandw" ''${builtins.readFile ./bandw}'';
   maintenance = pkgs.writeShellScriptBin "maintenance" ''${builtins.readFile ./maintenance}'';
   # pkgsUnstable = import <nixpkgs-unstable> {config = { allowUnfree = true; }; };
-  pkgsUnstable = import inputs.pkgsUnstable {
-    config = {
-      allowUnfree = true;
-      permittedInsecurePackages = ["electron-25.9.0" "electron-27.3.11"];
-    };
-  };
+  # pkgsUnstable = import inputs.pkgsUnstable {
+  #   config = {
+  #     allowUnfree = true;
+  #     permittedInsecurePackages = ["electron-25.9.0" "electron-27.3.11"];
+  #   };
+  # };
   # pkgsUnstable = import inputs.pkgsUnstable {config = { allowUnfree = true; permittedInsecurePackages = []; }; };
   # alfpkgs = import inputs.alfpkgs {config = { allowUnfree = true; permittedInsecurePackages = []; }; };
   # kftray = packages.kftray;
@@ -112,7 +112,7 @@ in {
       # ncspot
       kando
       gnomeExtensions.kando-integration
-      pkgsUnstable.youtube-music # so far the audio is not working, seems similar to the problem with microsoft edge
+      pkgsUnstable.pear-desktop # so far the audio is not working, seems similar to the problem with microsoft edge
       pkgsUnstable.flameshot
       distrobox #pods of distros to run apps
       exercism
@@ -120,6 +120,16 @@ in {
       zellij
       just
       slack
+
+      # organize
+      taskwarrior3
+
+      # net tools
+      dnslookup
+      dig
+      openssl
+      traceroute
+      nmap
 
       # wally-cli #for ergodox keyboard firmware
       pywal
@@ -155,12 +165,14 @@ in {
       jdk21
       pkgsUnstable.soapui
       roam
+      helium
       # datagrip
       pkgsIdea.jetbrains.datagrip
       xclip # for copy to clipboard
       kubectl
       kubectx
-      pkgsUnstable.lens
+      # pkgsUnstable.lens
+      lens
 
       # TUI tools
       k9s # lens alternative

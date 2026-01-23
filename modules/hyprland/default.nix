@@ -3,6 +3,7 @@
   pkgs,
   lib,
   config,
+  pkgsUnstable,
   ...
 }:
 with lib; let
@@ -22,11 +23,12 @@ in {
 
         exec-once = [
           "swaybg -i ~/.wallpaper"
-          "waybar"
+          "ashell"
           "nm-applet --indicator"
           "dunst"
           "lxqt.lxqt-policykit"
           "kando"
+          "clipse -listen"
         ];
 
         env = [
@@ -235,6 +237,11 @@ in {
         windowrule = float, class:kando
         windowrule = pin, class:kando
 
+        # Clipse
+        windowrulev2 = float,class:(clipse) # ensure you have a floating window class set if you want this behavior
+        windowrulev2 = size 822 652,class:(clipse) # set the size of the window as necessary
+
+
 
 
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
@@ -256,6 +263,7 @@ in {
 
         bind = $mainMod, mouse:274, global, kando:alfrheim-menu
 
+        bind = SUPER, V, exec, alacritty --class clipse -e 'clipse'
 
         # Move focus with mainMod + arrow keys
         bind = $mainMod, left, movefocus, l
@@ -328,6 +336,9 @@ in {
       nwg-dock-hyprland
       wlr-randr
       wlogout
+      ashell
+      walker # like rofi
+      pkgsUnstable.clipse
     ];
 
     # home.file.".config/hypr/hyprland.conf".source = ./hyprland.conf;

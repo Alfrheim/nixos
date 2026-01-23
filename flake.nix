@@ -59,7 +59,15 @@
             # };
             nixpkgs.config.packageOverrides = pkgs: {
               roam = pkgs.callPackage ./derivations/roam.nix {};
+              helium = pkgs.callPackage ./derivations/helium.nix {};
             };
+          }
+          {
+            nixpkgs.overlays = [
+              outputs.overlays.unstable-packages
+              outputs.overlays.additions
+              outputs.overlays.modifications
+            ];
           }
           home-manager.nixosModules.home-manager
           {
@@ -80,10 +88,6 @@
                 };
               };
             };
-            nixpkgs.overlays = [
-              outputs.overlays.additions
-              outputs.overlays.modifications
-            ];
           }
         ];
       };
@@ -124,6 +128,7 @@
               };
             };
             nixpkgs.overlays = [
+              outputs.overlays.unstable-packages
               outputs.overlays.additions
               outputs.overlays.modifications
             ];
