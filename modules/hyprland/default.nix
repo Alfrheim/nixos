@@ -12,6 +12,10 @@ in {
   options.modules.hyprland = {enable = mkEnableOption "hyprland";};
   config = mkIf cfg.enable {
     # programs.hyprlock.enable = true;
+    programs.walker = {
+      enable = true;
+      runAsService = true;
+    };
     wayland.windowManager.hyprland = {
       #https://github.com/vimjoyer/nixconf/blob/8bdeb4a3119adda168e6fb489a5e380d8eed91de/homeManagerModules/features/hyprland/default.nix#L17
       enable = true;
@@ -26,9 +30,10 @@ in {
           "ashell"
           "nm-applet --indicator"
           "dunst"
-          "lxqt.lxqt-policykit"
+          # "lxqt.lxqt-policykit"
           "kando"
           "clipse -listen"
+          "systemctl --user start hyprpolkitagent"
         ];
 
         env = [
@@ -257,13 +262,15 @@ in {
         bind = $mainMod, J, togglesplit, # dwindle
         bind = SUPER_ALT, R, exec, wofi --show run --xoffset=1670 --yoffset=12 --width=230px --height=984 --style=$HOME/.config/wofi.css --term=footclient --prompt=Run
         bind=SUPER, Space, exec, wezterm
-        bind= $mainMod, D, exec, launcher window & sleep 0.2; hyprctl dispatch focuswindow "^(Rofi)"
-        bind= $mainMod, B, exec, launcher drun & sleep 0.2; hyprctl dispatch focuswindow "^(Rofi)"
+        # bind= $mainMod, D, exec, launcher window & sleep 0.2; hyprctl dispatch focuswindow "^(Rofi)"
+        bind= $mainMod, D, exec, walker & sleep 0.2; hyprctl dispatch focuswindow "^(Walker)"
+        # bind = SUPER, V, exec, alacritty --class clipse -e 'clipse'
+        bind= $mainMod, B, exec, alacritty --class clipse -e 'clipse' & sleep 0.2; hyprctl dispatch focuswindow "^(clipse)"
+        # bind= $mainMod, B, exec, launcher drun & sleep 0.2; hyprctl dispatch focuswindow "^(Rofi)"
         bind = $mainMod SHIFT, J, exec, grim -g "$(slurp -d)" - | wl-copy
 
         bind = $mainMod, mouse:274, global, kando:alfrheim-menu
 
-        bind = SUPER, V, exec, alacritty --class clipse -e 'clipse'
 
         # Move focus with mainMod + arrow keys
         bind = $mainMod, left, movefocus, l
@@ -337,8 +344,8 @@ in {
       wlr-randr
       wlogout
       ashell
-      walker # like rofi
       pkgsUnstable.clipse
+      hyprpolkitagent
     ];
 
     # home.file.".config/hypr/hyprland.conf".source = ./hyprland.conf;

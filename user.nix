@@ -8,6 +8,7 @@
     ./modules/default.nix
     #./virtualisation.nix
     #./system-report-changes.nix
+    inputs.walker.homeManagerModules.default
   ];
   config.modules = {
     # gui

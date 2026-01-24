@@ -19,6 +19,12 @@
 
     nixpkgs-idea2022-2-5.url = "github:nixos/nixpkgs/1ed91531b68f820ba026e3cb8fd1e6ed40d64ee1";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
+    elephant.url = "github:abenz1267/elephant";
+
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.elephant.follows = "elephant";
+    };
   };
 
   outputs = inputs @ {
