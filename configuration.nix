@@ -26,6 +26,7 @@ in {
     enable = true;
     plugins = [pkgs.evolution-ews];
   };
+  programs.dconf.enable = true;
 
   programs.zsh.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -35,7 +36,10 @@ in {
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    firewall.allowedTCPPorts = [11434]; # we open ports for ollama
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Andorra";
@@ -95,9 +99,21 @@ in {
   # services.xserver.displayManager.lightdm.enable = true;
   services.xserver.windowManager.leftwm.enable = true;
 
-  xdg.portal.enable = true;
-  xdg.portal.wlr.enable = false;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+  xdg.portal = {
+    enable = true;
+    wlr.enable = false;
+
+    config = {
+      common = {
+        default = ["hyprland"];
+      };
+    };
+
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+    ];
+  };
+
   # xdg.portal.config.common.default = "*";
   # services.xserver.displayManager.defaultSession = "none+leftwm";
   programs.hyprland.enable = true;
@@ -239,6 +255,10 @@ in {
     seahorse # too see the keyrings
     libsecret # secret-tool command, similar to pass but is a cli for Secret Service
 
+    # required for many electron
+    glib
+    gsettings-desktop-schemas
+
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
   ];
@@ -251,6 +271,7 @@ in {
     XDG_CONFIG_HOME = "$HOME/.config";
     XDG_DATA_HOME = "$HOME/.local/share";
     XDG_STATE_HOME = "$HOME/.local/state";
+    WGPU_BACKEND = "gl"; # trying to fix the problem with vulkan and hyprland. Since we put the ashell bar after a while ashell and brave start going slow
 
     # Not officially in the specification
     XDG_BIN_HOME = "$HOME/.local/bin";

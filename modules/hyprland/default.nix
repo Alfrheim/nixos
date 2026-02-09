@@ -27,13 +27,15 @@ in {
 
         exec-once = [
           "swaybg -i ~/.wallpaper"
-          "ashell"
           "nm-applet --indicator"
           "dunst"
           # "lxqt.lxqt-policykit"
           "kando"
           "clipse -listen"
           "systemctl --user start hyprpolkitagent"
+        ];
+        exec = [
+          "pkill ashell; ashell"
         ];
 
         env = [

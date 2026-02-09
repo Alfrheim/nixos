@@ -58,6 +58,15 @@ in {
         set -s escape-time 0
       '';
     };
+    programs.brave = {
+      enable = true;
+      commandLineArgs = [
+        "--ozone-platform=wayland"
+        "--enable-features=UseOzonePlatform"
+        "--use-gl=egl"
+        "--disable-features=Vulkan"
+      ];
+    };
     gtk.cursorTheme = {
       package = pkgs.catppuccin-cursors.latteBlue;
       name = "latteBlue";
@@ -97,9 +106,15 @@ in {
       steam
       arandr
       networkmanagerapplet
-      brave
       fastfetch
+
       enpass
+      pkgsUnstable.proton-pass
+      pkgsUnstable.protonmail-desktop
+      pkgsUnstable.proton-authenticator
+      pkgsUnstable.protonvpn-gui
+      # bitwarden-desktop
+
       zathura
       p7zip
       mplayer
@@ -171,8 +186,8 @@ in {
       xclip # for copy to clipboard
       kubectl
       kubectx
-      # pkgsUnstable.lens
-      lens
+      pkgsUnstable.lens
+      # lens
 
       # TUI tools
       k9s # lens alternative
@@ -206,13 +221,14 @@ in {
       #work
       #jetbrains.idea-ultimate
       pkgsIdea.jetbrains.idea-ultimate #version 2022.2.5
-      jetbrains.idea-community
+      jetbrains.idea-oss
       google-chrome
       #jetbrains.rider
       #jetbrains.webstorm
       # jetbrains.datagrip
       #remmina
       pkgsUnstable.postman
+      pkgsUnstable.bruno
       httpie
 
       appimage-run
