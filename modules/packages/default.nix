@@ -63,8 +63,9 @@ in {
       commandLineArgs = [
         "--ozone-platform=wayland"
         "--enable-features=UseOzonePlatform"
-        "--use-gl=egl"
         "--disable-features=Vulkan"
+        "--use-gl=angle"
+        "--use-angle=opengl"
       ];
     };
     gtk.cursorTheme = {
@@ -113,7 +114,6 @@ in {
       pkgsUnstable.protonmail-desktop
       pkgsUnstable.proton-authenticator
       pkgsUnstable.protonvpn-gui
-      # bitwarden-desktop
 
       zathura
       p7zip

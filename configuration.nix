@@ -70,6 +70,11 @@ in {
     fsType = "nfs";
     options = ["rw" "vers=4"];
   };
+  fileSystems."/mnt/data1" = {
+    device = "192.168.4.2:/srv/data1";
+    fsType = "nfs";
+    options = ["rw" "vers=4"];
+  };
 
   services.xserver.desktopManager.xterm.enable = false;
   services.gnome.gnome-keyring.enable = true;
