@@ -70,8 +70,8 @@ in {
     fsType = "nfs";
     options = ["rw" "vers=4"];
   };
-  fileSystems."/mnt/data1" = {
-    device = "192.168.4.2:/srv/data1";
+  fileSystems."/mnt/data2" = {
+    device = "192.168.4.2:/srv/data2";
     fsType = "nfs";
     options = ["rw" "vers=4"];
   };
