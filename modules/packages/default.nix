@@ -113,7 +113,7 @@ in {
       pkgsUnstable.proton-pass
       pkgsUnstable.protonmail-desktop
       pkgsUnstable.proton-authenticator
-      pkgsUnstable.protonvpn-gui
+      pkgsUnstable.proton-vpn
 
       zathura
       p7zip
@@ -228,7 +228,7 @@ in {
       # jetbrains.datagrip
       #remmina
       pkgsUnstable.postman
-      pkgsUnstable.bruno
+      # pkgsUnstable.bruno # for some reason it is not working, we put it in environment in the config, there it works
       httpie
 
       appimage-run

@@ -22,10 +22,10 @@ in {
   # we deactivate ipv6 for nordvpn
   networking.enableIPv6 = false;
   boot.kernel.sysctl."net.ipv6.conf.tun0.disable_ipv6" = true;
-  programs.evolution = {
-    enable = true;
-    plugins = [pkgs.evolution-ews];
-  };
+  # programs.evolution = {
+  #   enable = true;
+  #   plugins = [pkgs.evolution-ews];
+  # };
   programs.dconf.enable = true;
 
   programs.zsh.enable = true;
@@ -126,6 +126,10 @@ in {
     bluetooth.enable = true;
     graphics = {
       enable = true;
+      extraPackages = with pkgs; [
+        intel-media-driver
+        libva
+      ];
     };
   };
   services.displayManager.defaultSession = "hyprland";
@@ -249,7 +253,7 @@ in {
       };
     };
   };
-  nixpkgs.config.permittedInsecurePackages = ["ventoy-1.1.07"];
+  nixpkgs.config.permittedInsecurePackages = ["ventoy-1.1.10"];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -263,6 +267,7 @@ in {
     # required for many electron
     glib
     gsettings-desktop-schemas
+    bruno
 
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
